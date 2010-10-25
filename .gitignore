@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cat <<EOF > .gitignore
+# xcode noise
+build/*
+*.pbxuser
+*.mode1v3
+
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+profile
+EOF
+
+cat <<EOF > .gitattributes
+*.pbxproj -crlf -diff -merge
+EOF
+
