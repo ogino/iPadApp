@@ -43,6 +43,8 @@
 		888E633D12717EE7002C18DF /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
 		88DB50321276D2B3005F4E2A /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88DB50761276D452005F4E2A /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
+		88DB50C91276DEFD005F4E2A /* TrigerHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB50C81276DEFD005F4E2A /* TrigerHeader.m */; };
+		88DB50D21276E1A9005F4E2A /* cursor.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DB50D11276E1A9005F4E2A /* cursor.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,9 @@
 		8881073D1270478400F74216 /* URLLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLLoaderTest.m; sourceTree = "<group>"; };
 		888E633B12717EE7002C18DF /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
 		888E633C12717EE7002C18DF /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
+		88DB50C71276DEFD005F4E2A /* TrigerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrigerHeader.h; sourceTree = "<group>"; };
+		88DB50C81276DEFD005F4E2A /* TrigerHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrigerHeader.m; sourceTree = "<group>"; };
+		88DB50D11276E1A9005F4E2A /* cursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cursor.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iPadApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPadApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +165,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88DB50D01276E18D005F4E2A /* img */,
 				8881063512702B2A00F74216 /* plist */,
 				8881063612702B4100F74216 /* xib */,
 			);
@@ -336,6 +342,8 @@
 		88DB50BE1276DB98005F4E2A /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				88DB50C71276DEFD005F4E2A /* TrigerHeader.h */,
+				88DB50C81276DEFD005F4E2A /* TrigerHeader.m */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -347,6 +355,14 @@
 				8881063E12702DDE00F74216 /* PublicTLViewController.m */,
 			);
 			path = TimeLineView;
+			sourceTree = "<group>";
+		};
+		88DB50D01276E18D005F4E2A /* img */ = {
+			isa = PBXGroup;
+			children = (
+				88DB50D11276E1A9005F4E2A /* cursor.png */,
+			);
+			path = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				88DB50D21276E1A9005F4E2A /* cursor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,8 +507,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				8803442612713B4400C25398 /* NSArray+Util.m in Sources */,
 				888106ED12703ABE00F74216 /* NSObject+SBJSON.m in Sources */,
 				888106EE12703ABE00F74216 /* NSString+SBJSON.m in Sources */,
 				8881063F12702DDE00F74216 /* PublicTLViewController.m in Sources */,
@@ -499,11 +518,10 @@
 				888106F012703ABE00F74216 /* SBJsonParser.m in Sources */,
 				888106F112703ABE00F74216 /* SBJsonWriter.m in Sources */,
 				88810643127030BA00F74216 /* TimeLine.m in Sources */,
-				8881070D12703F4900F74216 /* URLLoader.m in Sources */,
-				8803442612713B4400C25398 /* NSArray+Util.m in Sources */,
+				88DB50C91276DEFD005F4E2A /* TrigerHeader.m in Sources */,
 				888E633D12717EE7002C18DF /* UIImage+Util.m in Sources */,
+				8881070D12703F4900F74216 /* URLLoader.m in Sources */,
 				88535B631276820700B35A78 /* URLConnection.m in Sources */,
-				88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
