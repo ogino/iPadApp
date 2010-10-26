@@ -253,9 +253,8 @@
 		8881063A12702D5200F74216 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				88DB50C01276DE68005F4E2A /* TimeLineView */,
 				88DB50BE1276DB98005F4E2A /* Header */,
-				8881063D12702DDE00F74216 /* PublicTLViewController.h */,
-				8881063E12702DDE00F74216 /* PublicTLViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -338,7 +337,16 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Header;
+			path = Header;
+			sourceTree = "<group>";
+		};
+		88DB50C01276DE68005F4E2A /* TimeLineView */ = {
+			isa = PBXGroup;
+			children = (
+				8881063D12702DDE00F74216 /* PublicTLViewController.h */,
+				8881063E12702DDE00F74216 /* PublicTLViewController.m */,
+			);
+			path = TimeLineView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
