@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "define.h"
 
 
 @interface URLConnection : NSObject {
-	NSURLConnection *connection_;
+//	NSURLConnection *connection_;
 	NSMutableData	*data_;
 }
 
-@property(retain, nonatomic) NSURLConnection *connection;
+//@property(retain, nonatomic) NSURLConnection *connection;
 @property(retain ,nonatomic) NSMutableData *data;
 
-- (void) loadFromUrl: (NSString *)url method:(NSString *) method;
+- (void) createConnection:(NSURLRequest *)request;
 
 @end

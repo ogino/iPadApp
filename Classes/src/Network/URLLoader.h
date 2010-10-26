@@ -7,16 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "define.h"
+#import "AlertUtil.h"
+#import "URLConnection.h"
 
 
-@interface URLLoader : NSObject {
-
+@interface URLLoader : NSURLConnection {
+@private
+//	URLConnection* connection_;
+	NSMutableData* data_;
+	BOOL done_;
 }
 
-- (NSData*)request:(NSURL*) url;
+//@property (nonatomic, retain) URLConnection* connection;
+@property (nonatomic, retain) NSMutableData* data;
+@property (nonatomic, assign) BOOL done;
 
-- (NSData*)request:(NSURL*) url get:(NSString*) get;
+- (void)request:(NSURL*) url;
 
-- (NSData*)request:(NSURL *)url post:(NSString*) post;
+- (void)request:(NSURL*) url get:(NSString*) get;
+
+- (void)request:(NSURL *)url post:(NSString*) post;
 
 @end

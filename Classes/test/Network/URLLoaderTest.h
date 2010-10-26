@@ -19,7 +19,7 @@
 
 
 @interface URLLoaderTest : SenTestCase {
-	URLLoader* network;
+	URLLoader* urlLoader;
 }
 
 

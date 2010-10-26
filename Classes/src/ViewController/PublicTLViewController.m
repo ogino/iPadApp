@@ -14,6 +14,9 @@
 @synthesize loaded = loaded_;
 @synthesize timeLine = timeLine_;
 @synthesize tweets = tweets_;
+@synthesize indicator = indicator_;
+@synthesize label = label_;
+@synthesize images = images_;
 
 static NSString* const PUBLIC_TIMELINE = @"http://api.twitter.com/1/statuses/public_timeline.json";
 static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
@@ -25,9 +28,27 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 	[self.tableView reloadData];
 }
 
+- (UIImage*)createImage:(NSString*)urlStr {
+	NSURL* url = [NSURL URLWithString:urlStr];
+	NSData* data = [NSData dataWithContentsOfURL:url];
+	UIImage* image = [UIImage imageWithData:data];
+	return [image shrinkImage:CGRectMake(0, 0, 80, 80)];
+}
+
+- (void)createUserImage {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	for (NSMutableDictionary* tweet in self.tweets) {
+		NSMutableDictionary* user = [tweet objectForKey:@"user"];
+		UIImage* image = [self createImage:(NSString*)[user objectForKey:@"profile_image_url"]];
+		[self.images addObject:image]; 
+	}
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 - (void)requestTimeLine {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	self.tweets = (NSArray*)[self.timeLine createData];
+	[self createUserImage];
 	self.loaded = YES;
 	[[NSNotificationCenter defaultCenter] postNotificationName:PTNOFIFY object:nil];
 	[pool release];
@@ -51,11 +72,20 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 	return shrinkedImage;
 }
 
-- (UIImage*)createImage:(NSString*)urlStr {
-	NSURL* url = [NSURL URLWithString:urlStr];
-	NSData* data = [NSData dataWithContentsOfURL:url];
-	UIImage* image = [UIImage imageWithData:data];
-	return [image shrinkImage:CGRectMake(0, 0, 80, 80)];
+- (void)createTrigerHeader {
+	CGRect rect = self.tableView.bounds;
+	rect.origin.y -= 80;
+	rect.size.height = 80;
+	self.label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+	self.label.backgroundColor = [UIColor blackColor];
+	self.label.textColor = [UIColor whiteColor];
+	self.label.text = @"下げて更新！\nさあどうぞ！";
+	self.label.numberOfLines = 0;
+	self.label.lineBreakMode = UILineBreakModeWordWrap;
+	self.label.textAlignment = UITextAlignmentCenter;
+	self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+	[self.label addSubview:self.indicator];
+	[self.tableView addSubview:self.label];
 }
 
 #pragma mark -
@@ -76,9 +106,12 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
     [super viewDidLoad];
 
 	self.title = @"ついったぁ";
+	self.images = [NSMutableArray array];
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init] autorelease];
 	self.timeLine.url = PUBLIC_TIMELINE;
+
+	[self createTrigerHeader];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:PTNOFIFY object:nil];
 }
@@ -133,19 +166,17 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
     }
-
 	if (![self.tweets isEmpty]) {
 		NSDictionary* tweet = [self.tweets objectAtIndex:indexPath.row];
 		cell.detailTextLabel.text = (NSString*)[tweet objectForKey:@"text"];
 		cell.detailTextLabel.numberOfLines = 0;
 		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 		NSDictionary* user = [tweet objectForKey:@"user"];
-		cell.imageView.image = [self createImage:(NSString*)[user objectForKey:@"profile_image_url"]];
+		cell.imageView.image = [self.images objectAtIndex:indexPath.row];
 		cell.textLabel.text = (NSString*)[user objectForKey:@"name"];
 		cell.textLabel.numberOfLines = 0;
 		cell.textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
 	}
-
     return cell;
 }
 
@@ -209,6 +240,9 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 - (void)dealloc {
 	self.timeLine = nil;
 	self.tweets = nil;
+	self.indicator = nil;
+	self.label = nil;
+	self.images = nil;
     [super dealloc];
 }
 

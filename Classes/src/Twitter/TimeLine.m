@@ -18,7 +18,7 @@
 @synthesize posts = posts_;
 @synthesize tweets = tweets_;
 
-- (id) init:(NSString*) url userId:(NSString*) userId password:(NSString*) password {
+- (id)init:(NSString*)url userId:(NSString*)userId password:(NSString*)password {
 	if ([super init] != nil) {
 		self.url = url;
 		self.userId = userId;
@@ -27,25 +27,28 @@
 	return self;
 }
 
-- (id) createData {
+- (id)createData {
 	assert(self.url != nil);
-	Network* network = [[[Network alloc] init] autorelease];
-	NSData* data = [network request:[NSURL URLWithString:self.url]];
+	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
+	[urlLoader request:[NSURL URLWithString:self.url]];
+	while (!urlLoader.done)
+		[NSThread sleepForTimeInterval:0.5];
+	NSData* data = urlLoader.data;
 	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 	return [json JSONValue];
 }
 
-- (id) createDataWithGet:(NSDictionary*) gets {
+- (id)createDataWithGet:(NSDictionary*) gets {
 	assert(self.gets != nil);
 	return nil;
 }
 
-- (id) createDataWithPost:(NSDictionary*) posts {
+- (id)createDataWithPost:(NSDictionary*) osts {
 	assert(self.posts != nil);
 	return nil;
 }
 
-- (void) dealloc {
+- (void)dealloc {
 	self.gets = nil;
 	self.posts = nil;
 	self.tweets = nil;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "JSON.h"
-#import "Network.h"
+#import "URLLoader.h"
 
 
 @interface TimeLine : NSObject {

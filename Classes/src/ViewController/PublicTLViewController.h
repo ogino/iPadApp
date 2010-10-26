@@ -16,10 +16,16 @@
 	BOOL loaded_;
 	TimeLine* timeLine_;
 	NSArray* tweets_;
+	UIActivityIndicatorView* indicator_;
+	UILabel* label_;
+	NSMutableArray* images_;
 }
 
 @property (nonatomic, assign) BOOL loaded;
 @property (nonatomic, retain) TimeLine* timeLine;
 @property (nonatomic, retain) NSArray* tweets;
+@property (nonatomic, retain) UIActivityIndicatorView* indicator;
+@property (nonatomic, retain) UILabel* label;
+@property (nonatomic, retain) NSMutableArray* images;
 
 @end
