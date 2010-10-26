@@ -8,15 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "define.h"
+#import "AlertUtil.h"
 
 
 @interface URLConnection : NSObject {
-//	NSURLConnection *connection_;
+@private
+	NSURLConnection *connection_;
 	NSMutableData	*data_;
+	BOOL done_;
 }
 
-//@property(retain, nonatomic) NSURLConnection *connection;
-@property(retain ,nonatomic) NSMutableData *data;
+@property (nonatomic, retain) NSURLConnection *connection;
+@property (nonatomic, retain) NSMutableData *data;
+@property (nonatomic, assign) BOOL done;
 
 - (void) createConnection:(NSURLRequest *)request;
 

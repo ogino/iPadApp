@@ -30,22 +30,22 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 
 - (UIImage*)createImage:(NSString*)urlStr {
 	NSURL* url = [NSURL URLWithString:urlStr];
-	NSData* data = [NSData dataWithContentsOfURL:url];
+	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
+	NSData* data = [urlLoader request:url];
 	UIImage* image = [UIImage imageWithData:data];
 	return [image shrinkImage:CGRectMake(0, 0, 80, 80)];
 }
 
 - (void)createUserImage {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	for (NSMutableDictionary* tweet in self.tweets) {
 		NSMutableDictionary* user = [tweet objectForKey:@"user"];
 		UIImage* image = [self createImage:(NSString*)[user objectForKey:@"profile_image_url"]];
 		[self.images addObject:image]; 
 	}
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)requestTimeLine {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	self.tweets = (NSArray*)[self.timeLine createData];
 	[self createUserImage];
@@ -55,6 +55,7 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 }
 
 - (void)fetchedTimeLine:(NSNotification*) notification {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[self performSelectorOnMainThread:@selector(refleshTable) withObject:nil waitUntilDone:YES];
 }
 
@@ -84,6 +85,7 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 	self.label.lineBreakMode = UILineBreakModeWordWrap;
 	self.label.textAlignment = UITextAlignmentCenter;
 	self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+	[self.indicator startAnimating];
 	[self.label addSubview:self.indicator];
 	[self.tableView addSubview:self.label];
 }

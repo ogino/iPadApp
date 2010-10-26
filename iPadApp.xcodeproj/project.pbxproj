@@ -41,6 +41,8 @@
 		8881072B1270474200F74216 /* URLLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8881070C12703F4900F74216 /* URLLoader.m */; };
 		8881073E1270478400F74216 /* URLLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8881073D1270478400F74216 /* URLLoaderTest.m */; };
 		888E633D12717EE7002C18DF /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
+		88DB50321276D2B3005F4E2A /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
+		88DB50761276D452005F4E2A /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -251,6 +253,7 @@
 		8881063A12702D5200F74216 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				88DB50BE1276DB98005F4E2A /* Header */,
 				8881063D12702DDE00F74216 /* PublicTLViewController.h */,
 				8881063E12702DDE00F74216 /* PublicTLViewController.m */,
 			);
@@ -329,6 +332,13 @@
 				8881073D1270478400F74216 /* URLLoaderTest.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		88DB50BE1276DB98005F4E2A /* Header */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,7 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8881070E12703F4900F74216 /* URLLoader.m in Sources */,
+				88DB50761276D452005F4E2A /* AlertUtil.m in Sources */,
 				888106E812703ABE00F74216 /* NSObject+SBJSON.m in Sources */,
 				888106E912703ABE00F74216 /* NSString+SBJSON.m in Sources */,
 				888106EA12703ABE00F74216 /* SBJsonBase.m in Sources */,
@@ -501,6 +511,8 @@
 				888106EC12703ABE00F74216 /* SBJsonWriter.m in Sources */,
 				888106AA1270376900F74216 /* TimeLine.m in Sources */,
 				888106AF1270378400F74216 /* TimeLineTest.m in Sources */,
+				88DB50321276D2B3005F4E2A /* URLConnection.m in Sources */,
+				8881070E12703F4900F74216 /* URLLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

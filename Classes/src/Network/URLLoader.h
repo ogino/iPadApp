@@ -12,21 +12,20 @@
 #import "URLConnection.h"
 
 
-@interface URLLoader : NSURLConnection {
+@interface URLLoader : NSObject {
 @private
-//	URLConnection* connection_;
-	NSMutableData* data_;
+	URLConnection* connection_;
 	BOOL done_;
 }
 
-//@property (nonatomic, retain) URLConnection* connection;
+@property (nonatomic, retain) URLConnection* connection;
 @property (nonatomic, retain) NSMutableData* data;
 @property (nonatomic, assign) BOOL done;
 
-- (void)request:(NSURL*) url;
+- (NSData*)request:(NSURL*) url;
 
-- (void)request:(NSURL*) url get:(NSString*) get;
+- (NSData*)request:(NSURL*) url get:(NSString*) get;
 
-- (void)request:(NSURL *)url post:(NSString*) post;
+- (NSData*)request:(NSURL *)url post:(NSString*) post;
 
 @end

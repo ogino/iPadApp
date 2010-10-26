@@ -30,10 +30,7 @@
 - (id)createData {
 	assert(self.url != nil);
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
-	[urlLoader request:[NSURL URLWithString:self.url]];
-	while (!urlLoader.done)
-		[NSThread sleepForTimeInterval:0.5];
-	NSData* data = urlLoader.data;
+	NSData* data = [urlLoader request:[NSURL URLWithString:self.url]];
 	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 	return [json JSONValue];
 }

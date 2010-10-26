@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Categories.h"
 #import "TimeLine.h"
+#import "URLLoader.h"
 
 
 @interface PublicTLViewController : UITableViewController {
