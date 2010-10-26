@@ -1,5 +1,5 @@
 //
-//  Network.h
+//  URLLoader.h
 //  iPadApp
 //
 //  Created by 荻野 雅 on 10/10/21.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Network : NSObject {
+@interface URLLoader : NSObject {
 
 }
 

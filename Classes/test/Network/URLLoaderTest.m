@@ -1,18 +1,18 @@
 //
-//  NetworkTest.m
+//  URLLoaderTest.m
 //  iPadApp
 //
 //  Created by 荻野 雅 on 10/10/21.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "NetworkTest.h"
+#import "URLLoaderTest.h"
 
 
-@implementation NetworkTest
+@implementation URLLoaderTest
 
 - (void)setUp {
-	network = [[Network alloc] init];
+	network = [[URLLoader alloc] init];
 }
 
 - (void)testRequest {

@@ -1,5 +1,5 @@
 //
-//  NetworkTest.h
+//  URLLoaderTest.h
 //  iPadApp
 //
 //  Created by 荻野 雅 on 10/10/21.
@@ -15,11 +15,11 @@
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
 #import <UIKit/UIKit.h>
-#import "Network.h"
+#import "URLLoader.h"
 
 
-@interface NetworkTest : SenTestCase {
-	Network* network;
+@interface URLLoaderTest : SenTestCase {
+	URLLoader* network;
 }
 
 

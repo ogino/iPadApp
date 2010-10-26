@@ -1,15 +1,15 @@
 //
-//  Network.m
+//  URLLoader.m
 //  iPadApp
 //
 //  Created by 荻野 雅 on 10/10/21.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "Network.h"
+#import "URLLoader.h"
 
 
-@implementation Network
+@implementation URLLoader
 
 - (NSURL*) createGETURL:(NSURL*) url get:(NSString*) get {
 	NSString* urlStr = [url absoluteString];
