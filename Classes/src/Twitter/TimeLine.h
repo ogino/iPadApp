@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "Categories.h"
 #import "JSON.h"
 #import "URLLoader.h"
 

@@ -14,11 +14,14 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		8803442612713B4400C25398 /* NSArray+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8803442512713B4400C25398 /* NSArray+Util.m */; };
+		8811D69F12791999008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
+		8811D6A0127919FC008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
+		8811D6BB12791A47008D64E5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
 		88535B631276820700B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BD81276A8D300B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BE21276A90F00B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
-		8881063F12702DDE00F74216 /* PublicTLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8881063E12702DDE00F74216 /* PublicTLViewController.m */; };
+		8881063F12702DDE00F74216 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8881063E12702DDE00F74216 /* TimeLineViewController.m */; };
 		88810643127030BA00F74216 /* TimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 88810642127030BA00F74216 /* TimeLine.m */; };
 		888106AA1270376900F74216 /* TimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 88810642127030BA00F74216 /* TimeLine.m */; };
 		888106AB1270376D00F74216 /* libOCHamcrest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 888106511270347100F74216 /* libOCHamcrest.a */; };
@@ -60,13 +63,15 @@
 		8803442412713B4400C25398 /* NSArray+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Util.h"; sourceTree = "<group>"; };
 		8803442512713B4400C25398 /* NSArray+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Util.m"; sourceTree = "<group>"; };
 		8803442712713BF900C25398 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
+		8811D69D12791999008D64E5 /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
+		8811D69E12791999008D64E5 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
 		88535B611276820700B35A78 /* URLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnection.h; sourceTree = "<group>"; };
 		88535B621276820700B35A78 /* URLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnection.m; sourceTree = "<group>"; };
 		88535B7D12769E1F00B35A78 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		88535B9B1276A40F00B35A78 /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
 		88535B9C1276A40F00B35A78 /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
-		8881063D12702DDE00F74216 /* PublicTLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTLViewController.h; sourceTree = "<group>"; };
-		8881063E12702DDE00F74216 /* PublicTLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTLViewController.m; sourceTree = "<group>"; };
+		8881063D12702DDE00F74216 /* TimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineViewController.h; sourceTree = "<group>"; };
+		8881063E12702DDE00F74216 /* TimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineViewController.m; sourceTree = "<group>"; };
 		88810641127030BA00F74216 /* TimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLine.h; sourceTree = "<group>"; };
 		88810642127030BA00F74216 /* TimeLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLine.m; sourceTree = "<group>"; };
 		888106511270347100F74216 /* libOCHamcrest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCHamcrest.a; path = OCHamcrest/libOCHamcrest.a; sourceTree = "<group>"; };
@@ -190,6 +195,8 @@
 				8803442712713BF900C25398 /* Categories.h */,
 				8803442412713B4400C25398 /* NSArray+Util.h */,
 				8803442512713B4400C25398 /* NSArray+Util.m */,
+				8811D69D12791999008D64E5 /* NSString+Util.h */,
+				8811D69E12791999008D64E5 /* NSString+Util.m */,
 				888E633B12717EE7002C18DF /* UIImage+Util.h */,
 				888E633C12717EE7002C18DF /* UIImage+Util.m */,
 			);
@@ -351,8 +358,8 @@
 		88DB50C01276DE68005F4E2A /* TimeLineView */ = {
 			isa = PBXGroup;
 			children = (
-				8881063D12702DDE00F74216 /* PublicTLViewController.h */,
-				8881063E12702DDE00F74216 /* PublicTLViewController.m */,
+				8881063D12702DDE00F74216 /* TimeLineViewController.h */,
+				8881063E12702DDE00F74216 /* TimeLineViewController.m */,
 			);
 			path = TimeLineView;
 			sourceTree = "<group>";
@@ -513,7 +520,7 @@
 				8803442612713B4400C25398 /* NSArray+Util.m in Sources */,
 				888106ED12703ABE00F74216 /* NSObject+SBJSON.m in Sources */,
 				888106EE12703ABE00F74216 /* NSString+SBJSON.m in Sources */,
-				8881063F12702DDE00F74216 /* PublicTLViewController.m in Sources */,
+				8881063F12702DDE00F74216 /* TimeLineViewController.m in Sources */,
 				888106EF12703ABE00F74216 /* SBJsonBase.m in Sources */,
 				888106F012703ABE00F74216 /* SBJsonParser.m in Sources */,
 				888106F112703ABE00F74216 /* SBJsonWriter.m in Sources */,
@@ -522,6 +529,7 @@
 				888E633D12717EE7002C18DF /* UIImage+Util.m in Sources */,
 				8881070D12703F4900F74216 /* URLLoader.m in Sources */,
 				88535B631276820700B35A78 /* URLConnection.m in Sources */,
+				8811D69F12791999008D64E5 /* NSString+Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,11 +540,13 @@
 				88DB50761276D452005F4E2A /* AlertUtil.m in Sources */,
 				888106E812703ABE00F74216 /* NSObject+SBJSON.m in Sources */,
 				888106E912703ABE00F74216 /* NSString+SBJSON.m in Sources */,
+				8811D6A0127919FC008D64E5 /* NSString+Util.m in Sources */,
 				888106EA12703ABE00F74216 /* SBJsonBase.m in Sources */,
 				888106EB12703ABE00F74216 /* SBJsonParser.m in Sources */,
 				888106EC12703ABE00F74216 /* SBJsonWriter.m in Sources */,
 				888106AA1270376900F74216 /* TimeLine.m in Sources */,
 				888106AF1270378400F74216 /* TimeLineTest.m in Sources */,
+				8811D6BB12791A47008D64E5 /* UIImage+Util.m in Sources */,
 				88DB50321276D2B3005F4E2A /* URLConnection.m in Sources */,
 				8881070E12703F4900F74216 /* URLLoader.m in Sources */,
 			);

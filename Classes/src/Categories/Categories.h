@@ -8,4 +8,5 @@
  */
 
 #import "NSArray+Util.h"
+#import "NSString+Util.h"
 #import "UIImage+Util.h"

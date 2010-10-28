@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PublicTLViewController.h"
+#import "define.h"
+#import "TimeLineViewController.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;

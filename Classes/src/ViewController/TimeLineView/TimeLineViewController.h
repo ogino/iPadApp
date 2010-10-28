@@ -1,5 +1,5 @@
 //
-//  PublicTLViewController.h
+//  TimeLineViewController.h
 //  iPadApp
 //
 //  Created by 荻野 雅 on 10/10/21.
@@ -12,10 +12,13 @@
 #import "URLLoader.h"
 
 
-@interface PublicTLViewController : UITableViewController {
+@interface TimeLineViewController : UITableViewController {
 @private
 	BOOL loaded_;
 	TimeLine* timeLine_;
+	NSString* url_;
+	NSString* userId_;
+	NSString* password_;
 	NSArray* tweets_;
 	UIActivityIndicatorView* indicator_;
 	UILabel* label_;
@@ -24,6 +27,9 @@
 
 @property (nonatomic, assign) BOOL loaded;
 @property (nonatomic, retain) TimeLine* timeLine;
+@property (nonatomic, copy) NSString* url;
+@property (nonatomic, copy) NSString* userId;
+@property (nonatomic, copy) NSString* password;
 @property (nonatomic, retain) NSArray* tweets;
 @property (nonatomic, retain) UIActivityIndicatorView* indicator;
 @property (nonatomic, retain) UILabel* label;

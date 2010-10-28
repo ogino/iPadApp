@@ -19,7 +19,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 	
-    PublicTLViewController* viewController = [[[PublicTLViewController alloc] init] autorelease];
+    TimeLineViewController* viewController = [[[TimeLineViewController alloc] init] autorelease];
+	viewController.title = @"Public Time Line!";
+	viewController.url = PUBLIC_TIMELINE;
 	UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 	navigationController.navigationBar.barStyle = UIBarStyleBlack;
 	[self.window addSubview:navigationController.view];

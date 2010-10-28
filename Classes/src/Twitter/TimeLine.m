@@ -30,9 +30,9 @@
 - (id)createData {
 	assert(self.url != nil);
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
-	NSData* data = [urlLoader request:[NSURL URLWithString:self.url]];
+	NSData* data = [urlLoader request:[NSURL URLWithString:self.url] timeoutInterval:60];
 	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-	return [json JSONValue];
+	return ([json isEmpty]) ? nil : [json JSONValue];
 }
 
 - (id)createDataWithGet:(NSDictionary*) gets {

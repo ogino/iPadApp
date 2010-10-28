@@ -54,7 +54,10 @@
 }
 
 - (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSLog(@"Error: code is %@, description is %@", [error code], [error description]);
+	NSLog(@"Error: code is \"%d\", domain is \"%@\", description is \"%@\"", [error code], [error domain], [error localizedDescription]);
+//	NSLog(@"Error: code is %d", [error code]);
+//	NSLog(@"Error: domain is %@", [error domain]);
+//	NSLog(@"Error: description is %@", [error localizedDescription]);
     [[NSNotificationCenter defaultCenter] postNotificationName:CON_FAIL object: self];
 }
 

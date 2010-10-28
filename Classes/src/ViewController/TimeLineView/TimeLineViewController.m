@@ -1,25 +1,25 @@
 //
-//  PublicTLViewController.m
+//  TimeLineViewController.m
 //  iPadApp
 //
 //  Created by 荻野 雅 on 10/10/21.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "PublicTLViewController.h"
+#import "TimeLineViewController.h"
 
 
-@implementation PublicTLViewController
+@implementation TimeLineViewController
 
 @synthesize loaded = loaded_;
 @synthesize timeLine = timeLine_;
+@synthesize url = url_;
+@synthesize userId = userId_;
+@synthesize password = password_;
 @synthesize tweets = tweets_;
 @synthesize indicator = indicator_;
 @synthesize label = label_;
 @synthesize images = images_;
-
-static NSString* const PUBLIC_TIMELINE = @"http://api.twitter.com/1/statuses/public_timeline.json";
-static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 
 #pragma mark -
 #pragma mark Private Methods
@@ -50,7 +50,7 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 	self.tweets = (NSArray*)[self.timeLine createData];
 	[self createUserImage];
 	self.loaded = YES;
-	[[NSNotificationCenter defaultCenter] postNotificationName:PTNOFIFY object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:TIMELINE_NOFIFY object:nil];
 	[pool release];
 }
 
@@ -107,15 +107,14 @@ static NSString* const PTNOFIFY = @"PUBLIC TIMELINE NOTIFICATION";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.title = @"ついったぁ";
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init] autorelease];
-	self.timeLine.url = PUBLIC_TIMELINE;
+	self.timeLine.url = self.url;
 
 	[self createTrigerHeader];
 
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:PTNOFIFY object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
