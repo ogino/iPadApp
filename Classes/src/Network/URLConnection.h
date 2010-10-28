@@ -15,11 +15,13 @@
 @private
 	NSURLConnection *connection_;
 	NSMutableData	*data_;
+	NSTimeInterval timeoutInterval_;
 	BOOL done_;
 }
 
 @property (nonatomic, retain) NSURLConnection *connection;
 @property (nonatomic, retain) NSMutableData *data;
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
 @property (nonatomic, assign) BOOL done;
 
 - (void) createConnection:(NSURLRequest *)request;

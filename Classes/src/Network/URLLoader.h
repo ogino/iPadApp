@@ -15,15 +15,11 @@
 @interface URLLoader : NSObject {
 @private
 	URLConnection* connection_;
-	NSTimeInterval timeoutInterval_;
 	NSMutableData* data_;
-	BOOL done_;
 }
 
 @property (nonatomic, retain) URLConnection* connection;
-@property (nonatomic, assign) NSTimeInterval timeoutInterval;
 @property (nonatomic, retain) NSMutableData* data;
-@property (nonatomic, assign) BOOL done;
 
 - (NSData*)request:(NSURL*)url;
 

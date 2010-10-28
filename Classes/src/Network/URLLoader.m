@@ -12,21 +12,18 @@
 @implementation URLLoader
 
 @synthesize connection = connection_;
-@synthesize timeoutInterval = timeoutInterval_;
 @synthesize data = data_;
-@synthesize done = done_;
 
 - (id)init {
 	if (self = [super init]) {
 		self.connection = [[[URLConnection alloc] init] autorelease];
-		self.done = NO;
 	}
 	return self;
 }
 
 - (id)initWithTimeoutInterval:(NSTimeInterval)timeoutInterval {
 	if (self = [self init]) {
-		self.timeoutInterval = timeoutInterval;
+		self.connection.timeoutInterval = timeoutInterval;
 	}
 	return self;
 }
@@ -39,8 +36,7 @@
 }
 
 - (NSData*)sendRequest:(NSMutableURLRequest*)request {
-	if (self.timeoutInterval > 0)
-		[request setTimeoutInterval:self.timeoutInterval];
+	[request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 	[self.connection createConnection:request];
 	while (!self.connection.done)
 		[NSThread sleepForTimeInterval:0.5];
@@ -64,17 +60,17 @@
 }
 
 - (NSData*)request:(NSURL*)url timeoutInterval:(NSTimeInterval)timeoutInterval {
-	self.timeoutInterval = timeoutInterval;
+	self.connection.timeoutInterval = timeoutInterval;
 	return [self request:url];
 }
 
 - (NSData*)request:(NSURL*)url get:(NSString*)get timeoutInterval:(NSTimeInterval)timeoutInterval {
-	self.timeoutInterval = timeoutInterval;
+	self.connection.timeoutInterval = timeoutInterval;
 	return [self request:url get:get];
 }
 
 - (NSData*)request:(NSURL *)url post:(NSString*)post timeoutInterval:(NSTimeInterval)timeoutInterval {
-	self.timeoutInterval = timeoutInterval;
+	self.connection.timeoutInterval = timeoutInterval;
 	return [self request:url post:post];
 }
 
