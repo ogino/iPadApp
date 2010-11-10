@@ -40,7 +40,7 @@
 	for (NSMutableDictionary* tweet in self.tweets) {
 		NSMutableDictionary* user = [tweet objectForKey:@"user"];
 		UIImage* image = [self createImage:(NSString*)[user objectForKey:@"profile_image_url"]];
-		[self.images addObject:image]; 
+		[self.images addObject:image];
 	}
 }
 
@@ -63,13 +63,13 @@
 	CGRect rect = CGRectMake(0, 0, 80, 80);
 
 	UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
-	
+
 	[image drawInRect:rect];
-	
+
 	UIImage* shrinkedImage = UIGraphicsGetImageFromCurrentImageContext();
-	
+
 	UIGraphicsEndImageContext();
-	
+
 	return shrinkedImage;
 }
 
@@ -109,8 +109,7 @@
 
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
-	self.timeLine = [[[TimeLine alloc] init] autorelease];
-	self.timeLine.url = self.url;
+	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
 
 	[self createTrigerHeader];
 
