@@ -17,10 +17,13 @@
 		8811D69F12791999008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
 		8811D6A0127919FC008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
 		8811D6BB12791A47008D64E5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
+		8847DA2512AE1D37003F30EF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8847DA2412AE1D37003F30EF /* RootViewController.m */; };
 		88535B631276820700B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BD81276A8D300B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BE21276A90F00B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
+		8866916D12ED442500CD3D2F /* HeaderTrgger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8866916C12ED442500CD3D2F /* HeaderTrgger.m */; };
+		886691A612ED4E3000CD3D2F /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 886691A512ED4E3000CD3D2F /* TabBarController.m */; };
 		8881063F12702DDE00F74216 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8881063E12702DDE00F74216 /* TimeLineViewController.m */; };
 		88810643127030BA00F74216 /* TimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 88810642127030BA00F74216 /* TimeLine.m */; };
 		888106AA1270376900F74216 /* TimeLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 88810642127030BA00F74216 /* TimeLine.m */; };
@@ -46,7 +49,6 @@
 		888E633D12717EE7002C18DF /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
 		88DB50321276D2B3005F4E2A /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88DB50761276D452005F4E2A /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
-		88DB50C91276DEFD005F4E2A /* TrigerHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB50C81276DEFD005F4E2A /* TrigerHeader.m */; };
 		88DB50D21276E1A9005F4E2A /* cursor.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DB50D11276E1A9005F4E2A /* cursor.png */; };
 /* End PBXBuildFile section */
 
@@ -65,11 +67,17 @@
 		8803442712713BF900C25398 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		8811D69D12791999008D64E5 /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		8811D69E12791999008D64E5 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		8847DA2312AE1D37003F30EF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		8847DA2412AE1D37003F30EF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		88535B611276820700B35A78 /* URLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnection.h; sourceTree = "<group>"; };
 		88535B621276820700B35A78 /* URLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnection.m; sourceTree = "<group>"; };
 		88535B7D12769E1F00B35A78 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		88535B9B1276A40F00B35A78 /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
 		88535B9C1276A40F00B35A78 /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
+		8866916B12ED442500CD3D2F /* HeaderTrgger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTrgger.h; sourceTree = "<group>"; };
+		8866916C12ED442500CD3D2F /* HeaderTrgger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTrgger.m; sourceTree = "<group>"; };
+		886691A412ED4E3000CD3D2F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		886691A512ED4E3000CD3D2F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		8881063D12702DDE00F74216 /* TimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineViewController.h; sourceTree = "<group>"; };
 		8881063E12702DDE00F74216 /* TimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineViewController.m; sourceTree = "<group>"; };
 		88810641127030BA00F74216 /* TimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLine.h; sourceTree = "<group>"; };
@@ -99,8 +107,6 @@
 		8881073D1270478400F74216 /* URLLoaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLLoaderTest.m; sourceTree = "<group>"; };
 		888E633B12717EE7002C18DF /* UIImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Util.h"; sourceTree = "<group>"; };
 		888E633C12717EE7002C18DF /* UIImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Util.m"; sourceTree = "<group>"; };
-		88DB50C71276DEFD005F4E2A /* TrigerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrigerHeader.h; sourceTree = "<group>"; };
-		88DB50C81276DEFD005F4E2A /* TrigerHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrigerHeader.m; sourceTree = "<group>"; };
 		88DB50D11276E1A9005F4E2A /* cursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cursor.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* iPadApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iPadApp-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +209,15 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		8847DA2212AE1D14003F30EF /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				8847DA2312AE1D37003F30EF /* RootViewController.h */,
+				8847DA2412AE1D37003F30EF /* RootViewController.m */,
+			);
+			path = RootView;
+			sourceTree = "<group>";
+		};
 		88535B9A1276A3F500B35A78 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +225,32 @@
 				88535B9C1276A40F00B35A78 /* AlertUtil.m */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		8866916612ED43CF00CD3D2F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8866916A12ED440400CD3D2F /* HeaderTrigger */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8866916A12ED440400CD3D2F /* HeaderTrigger */ = {
+			isa = PBXGroup;
+			children = (
+				8866916B12ED442500CD3D2F /* HeaderTrgger.h */,
+				8866916C12ED442500CD3D2F /* HeaderTrgger.m */,
+			);
+			path = HeaderTrigger;
+			sourceTree = "<group>";
+		};
+		886691A312ED4E0E00CD3D2F /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				886691A412ED4E3000CD3D2F /* TabBarController.h */,
+				886691A512ED4E3000CD3D2F /* TabBarController.m */,
+			);
+			path = TabBarController;
 			sourceTree = "<group>";
 		};
 		8881062712702A1500F74216 /* Delegate */ = {
@@ -231,6 +272,7 @@
 				8881070A12703F2A00F74216 /* Network */,
 				888106401270308D00F74216 /* Twitter */,
 				88535B9A1276A3F500B35A78 /* Util */,
+				8866916612ED43CF00CD3D2F /* View */,
 				8881063A12702D5200F74216 /* ViewController */,
 			);
 			path = src;
@@ -266,8 +308,9 @@
 		8881063A12702D5200F74216 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8847DA2212AE1D14003F30EF /* RootView */,
+				886691A312ED4E0E00CD3D2F /* TabBarController */,
 				88DB50C01276DE68005F4E2A /* TimeLineView */,
-				88DB50BE1276DB98005F4E2A /* Header */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -344,15 +387,6 @@
 				8881073D1270478400F74216 /* URLLoaderTest.m */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		88DB50BE1276DB98005F4E2A /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				88DB50C71276DEFD005F4E2A /* TrigerHeader.h */,
-				88DB50C81276DEFD005F4E2A /* TrigerHeader.m */,
-			);
-			path = Header;
 			sourceTree = "<group>";
 		};
 		88DB50C01276DE68005F4E2A /* TimeLineView */ = {
@@ -525,11 +559,13 @@
 				888106F012703ABE00F74216 /* SBJsonParser.m in Sources */,
 				888106F112703ABE00F74216 /* SBJsonWriter.m in Sources */,
 				88810643127030BA00F74216 /* TimeLine.m in Sources */,
-				88DB50C91276DEFD005F4E2A /* TrigerHeader.m in Sources */,
 				888E633D12717EE7002C18DF /* UIImage+Util.m in Sources */,
 				8881070D12703F4900F74216 /* URLLoader.m in Sources */,
 				88535B631276820700B35A78 /* URLConnection.m in Sources */,
 				8811D69F12791999008D64E5 /* NSString+Util.m in Sources */,
+				8847DA2512AE1D37003F30EF /* RootViewController.m in Sources */,
+				8866916D12ED442500CD3D2F /* HeaderTrgger.m in Sources */,
+				886691A612ED4E3000CD3D2F /* TabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,8 +663,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/Frameworks/OCHamcrest\"/**",
 					"\"$(SRCROOT)/Frameworks/OCMock\"/**",
-					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
-					"\"$(SRCROOT)/Frameworks/OCMock\"",
 				);
 				OTHER_CFLAGS = "-DUNIT_TEST";
 				OTHER_LDFLAGS = (
@@ -672,8 +706,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/Frameworks/OCHamcrest\"/**",
 					"\"$(SRCROOT)/Frameworks/OCMock\"/**",
-					"\"$(SRCROOT)/Frameworks/OCHamcrest\"",
-					"\"$(SRCROOT)/Frameworks/OCMock\"",
 				);
 				OTHER_CFLAGS = (
 					"-DNS_BLOCK_ASSERTIONS=1",

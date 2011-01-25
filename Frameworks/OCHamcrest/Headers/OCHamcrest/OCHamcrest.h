@@ -1,15 +1,21 @@
 //
 //  OCHamcrest - OCHamcrest.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
 
-    // Unit test integration
+/**
+	\defgroup integration Unit Test Integration
+ */
 #import <OCHamcrest/HCMatcherAssert.h>
 #import <OCHamcrest/HCNumberAssert.h>
 
-    // Core
+/**
+	\defgroup core Core Matchers
+ 
+	Fundamental matchers of objects and values, and composite matchers.
+ */
 #import <OCHamcrest/HCAllOf.h>
 #import <OCHamcrest/HCAnyOf.h>
 #import <OCHamcrest/HCDescribedAs.h>
@@ -21,7 +27,19 @@
 #import <OCHamcrest/HCIsNot.h>
 #import <OCHamcrest/HCIsSame.h>
 
-    // Library: Collection
+/**
+	\defgroup library Matcher Library
+ 
+	Library of Matcher implementations
+ */
+
+/**
+	\defgroup collection Collection Matchers
+    
+    Matchers of collections.
+ 
+	\ingroup library
+ */
 #import <OCHamcrest/HCIsCollectionContaining.h>
 #import <OCHamcrest/HCIsCollectionOnlyContaining.h>
 #import <OCHamcrest/HCIsDictionaryContaining.h>
@@ -29,17 +47,41 @@
 #import <OCHamcrest/HCIsDictionaryContainingValue.h>
 #import <OCHamcrest/HCIsIn.h>
 
-    // Library: Number
+/**
+	\defgroup number Number Matchers
+    
+    Matchers that perform numeric comparisons.
+ 
+	\ingroup library
+ */
 #import <OCHamcrest/HCIsCloseTo.h>
 #import <OCHamcrest/HCIsEqualToNumber.h>
 #import <OCHamcrest/HCOrderingComparison.h>
 
-    // Library: Object
+/**
+	\defgroup object Object Matchers
+    
+    Matchers that inspect objects.
+ 
+	\ingroup library
+ */
 #import <OCHamcrest/HCHasDescription.h>
 
-    // Library: Text
+/**
+	\defgroup text Text Matchers
+    
+    Matchers that perform text comparisons.
+ 
+	\ingroup library
+ */
 #import <OCHamcrest/HCIsEqualIgnoringCase.h>
 #import <OCHamcrest/HCIsEqualIgnoringWhiteSpace.h>
 #import <OCHamcrest/HCStringContains.h>
 #import <OCHamcrest/HCStringEndsWith.h>
 #import <OCHamcrest/HCStringStartsWith.h>
+
+/**
+	\defgroup helpers Helpers
+ 
+	Utilities for writing Matchers
+ */

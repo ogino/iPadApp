@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsEqual.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,38 +10,31 @@
 
 
 /**
-    Is the object equal to another object, as tested by the isEqual: method?
-*/
+    Is the object equal to another object, as tested by the -isEqual: method?
+    \ingroup core
+ */
 @interface HCIsEqual : HCBaseMatcher
 {
     id object;
 }
 
-+ (HCIsEqual*) isEqualTo:(id)equalArg;
-- (id) initEqualTo:(id)equalArg;
++ (HCIsEqual*) isEqualTo:(id)anObject;
+- (id) initEqualTo:(id)anObject;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/**
+    Is the object equal to another object, as tested by the -isEqual: method?
+    \see HCIsEqual
+    \ingroup core
+ */
+OBJC_EXPORT id<HCMatcher> HC_equalTo(id object);
 
 /**
-    Is the object equal to another object, as tested by the isEqual: method?
-*/
-id<HCMatcher> HC_equalTo(id equalArg);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+    Shorthand for \ref HC_equalTo, available if HC_SHORTHAND is defined.
+    \ingroup core
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_equalTo, available if HC_SHORTHAND is defined.
-*/
-#define equalTo HC_equalTo
-
+    #define equalTo HC_equalTo
 #endif

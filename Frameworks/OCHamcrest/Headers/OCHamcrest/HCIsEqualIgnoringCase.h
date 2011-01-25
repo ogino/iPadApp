@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsEqualIgnoringCase.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,7 +11,8 @@
 
 /**
     Tests if a string is equal to another string, regardless of the case.
-*/
+    \ingroup text
+ */
 @interface HCIsEqualIgnoringCase : HCBaseMatcher
 {
     NSString* string;
@@ -23,22 +24,17 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_equalToIgnoringCase(NSString* aString);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+/**
+    Tests if a string is equal to another string, regardless of the case.
+    \see HCIsEqualIgnoringCase
+    \ingroup text
+ */
+OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringCase(NSString* string);
 
 /**
-    Shorthand for HC_endsWith, available if HC_SHORTHAND is defined.
-*/
-#define equalToIgnoringCase HC_equalToIgnoringCase
-
+    Shorthand for \ref HC_equalToIgnoringCase, available if HC_SHORTHAND is defined.
+    \ingroup text
+ */
+#ifdef HC_SHORTHAND
+    #define equalToIgnoringCase HC_equalToIgnoringCase
 #endif

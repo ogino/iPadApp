@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "define.h"
-#import "TimeLineViewController.h"
+#import "RootViewController.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
+    UIWindow *window_;
+	RootViewController* rootViewController_;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) RootViewController* rootViewController;
 
 @end
 

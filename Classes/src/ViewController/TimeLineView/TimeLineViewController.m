@@ -17,14 +17,21 @@
 @synthesize userId = userId_;
 @synthesize password = password_;
 @synthesize tweets = tweets_;
-@synthesize indicator = indicator_;
-@synthesize label = label_;
+@synthesize trigger = trigger_;
 @synthesize images = images_;
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)refleshTable {
+- (void)createTrigerHeader {
+	CGRect rect = self.tableView.bounds;
+	rect.origin.y -= 80;
+	rect.size.height = 80;
+	self.trigger = [[HeaderTrgger alloc] initWithFrame:rect];
+	[self.tableView addSubview:self.trigger];
+}
+
+- (void)refreshTable {
 	[self.tableView reloadData];
 }
 
@@ -47,6 +54,7 @@
 - (void)requestTimeLine {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	[self createTrigerHeader];
 	self.tweets = (NSArray*)[self.timeLine createData];
 	[self createUserImage];
 	self.loaded = YES;
@@ -56,7 +64,7 @@
 
 - (void)fetchedTimeLine:(NSNotification*) notification {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	[self performSelectorOnMainThread:@selector(refleshTable) withObject:nil waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(refreshTable) withObject:nil waitUntilDone:YES];
 }
 
 - (UIImage*)adjustImage:(UIImage*)image {
@@ -73,22 +81,6 @@
 	return shrinkedImage;
 }
 
-- (void)createTrigerHeader {
-	CGRect rect = self.tableView.bounds;
-	rect.origin.y -= 80;
-	rect.size.height = 80;
-	self.label = [[[UILabel alloc] initWithFrame:rect] autorelease];
-	self.label.backgroundColor = [UIColor blackColor];
-	self.label.textColor = [UIColor whiteColor];
-	self.label.text = @"下げて更新！\nさあどうぞ！";
-	self.label.numberOfLines = 0;
-	self.label.lineBreakMode = UILineBreakModeWordWrap;
-	self.label.textAlignment = UITextAlignmentCenter;
-	self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-	[self.indicator startAnimating];
-	[self.label addSubview:self.indicator];
-	[self.tableView addSubview:self.label];
-}
 
 #pragma mark -
 #pragma mark Initialization
@@ -111,8 +103,6 @@
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
 
-	[self createTrigerHeader];
-
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:nil];
 }
 
@@ -125,7 +115,7 @@
 	if (!self.loaded)
 		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
 	else
-		[self refleshTable];
+		[self refreshTable];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -138,7 +128,6 @@
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Override to allow orientations other than the default portrait orientation.
     return YES;
 }
 
@@ -147,17 +136,14 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return ([self.tweets isEmpty]) ? 0 : 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return ([self.tweets isEmpty]) ? 0 : [self.tweets count];
 }
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     static NSString *identifier = @"Cell";
@@ -180,31 +166,25 @@
     return cell;
 }
 
-// Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
 
 
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
 
 
-// Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
 	NSLog(@"Move");
 }
 
 
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return NO;
 }
@@ -240,8 +220,7 @@
 - (void)dealloc {
 	self.timeLine = nil;
 	self.tweets = nil;
-	self.indicator = nil;
-	self.label = nil;
+	self.trigger = nil;
 	self.images = nil;
     [super dealloc];
 }

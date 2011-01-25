@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsEqualIgnoringWhiteSpace.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,6 +11,7 @@
 
 /**
     Tests if a string is equal to another string, ignoring any changes in whitespace.
+    \ingroup text
 */
 @interface HCIsEqualIgnoringWhiteSpace : HCBaseMatcher
 {
@@ -24,22 +25,20 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_equalToIgnoringWhiteSpace(NSString* aString);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+/**
+    Tests if a string is equal to another string, ignoring any changes in whitespace.
+    \see HCIsEqualIgnoringWhiteSpace
+    \ingroup text
+ */
+OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringWhiteSpace(NSString* string);
 
 /**
-    Shorthand for HC_endsWith, available if HC_SHORTHAND is defined.
-*/
-#define equalToIgnoringWhiteSpace HC_equalToIgnoringWhiteSpace
-
+    Shorthand for \ref HC_endsWith, available if HC_SHORTHAND is defined.
+    \ingroup text
+ */
+#ifdef HC_SHORTHAND
+    #define equalToIgnoringWhiteSpace HC_equalToIgnoringWhiteSpace
 #endif
+
+
+/** @} */

@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCAllOf.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,10 +11,12 @@
 
 /**
     Calculates the logical conjunction of multiple matchers.
-    
+
     Evaluation is shortcut, so subsequent matchers are not called if an earlier matcher returns
-    @c NO.
-*/
+    \c NO.
+
+    \ingroup core
+ */
 @interface HCAllOf : HCBaseMatcher
 {
     NSArray* matchers;
@@ -26,27 +28,18 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/**
+    Evaluates to \c YES only if \b all of the passed in matchers evaluate to \c YES.
+    \param matcher  Comma-separated list of matchers ending with \c nil.
+    \see HCAllOf
+    \ingroup core
+ */
+OBJC_EXPORT id<HCMatcher> HC_allOf(id<HCMatcher> matcher, ...);
 
 /**
-    Evaluates to @c YES only if @b all of the passed in matchers evaluate to @c YES.
-    
-    @param matcher Comma-separated list of matchers ending with @c nil.
-*/
-id<HCMatcher> HC_allOf(id<HCMatcher> matcher, ...);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+    Shorthand for \ref HC_allOf, available if HC_SHORTHAND is defined.
+    \ingroup core
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_allOf, available if HC_SHORTHAND is defined.
-*/
-#define allOf HC_allOf
-
+    #define allOf HC_allOf
 #endif

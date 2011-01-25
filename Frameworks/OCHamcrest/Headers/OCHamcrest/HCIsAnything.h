@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsAnything.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,8 +10,9 @@
 
 
 /**
-    A matcher that always returns @c YES.
-*/
+    A matcher that always returns \c YES.
+    \ingroup core
+ */
 @interface HCIsAnything : HCBaseMatcher
 {
     NSString* description;
@@ -25,37 +26,33 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+/**
+    This matcher always evaluates to \c YES.
+    \see HCIsAnything
+    \ingroup core
+ */
+OBJC_EXPORT id<HCMatcher> HC_anything();
 
 /**
-    This matcher always evaluates to @c YES.
-*/
-id<HCMatcher> HC_anything();
+    Shorthand for \ref HC_anything, available if HC_SHORTHAND is defined.
+ */
+#ifdef HC_SHORTHAND
+    #define anything HC_anything
+#endif
+
 
 /**
     This matcher always evaluates to <code>YES</code>.
-    
-    @param aDescription A meaningful string used when describing itself.
-*/
-id<HCMatcher> HC_anythingWithDescription(NSString* aDescription);
+    \param aDescription  A meaningful string used when describing itself.
+    \see HCIsAnything
+    \ingroup core
+ */
+OBJC_EXPORT id<HCMatcher> HC_anythingWithDescription(NSString* aDescription);
 
-#ifdef __cplusplus
-}
-#endif
-
-
+/**
+    Shorthand for \ref HC_anythingWithDescription, available if HC_SHORTHAND is defined.
+    \ingroup core
+ */
 #ifdef HC_SHORTHAND
-
-/**
-    Shorthand for HC_anything, available if HC_SHORTHAND is defined.
-*/
-#define anything HC_anything
-
-/**
-    Shorthand for HC_anythingWithDescription, available if HC_SHORTHAND is defined.
-*/
-#define anythingWithDescription HC_anythingWithDescription
-
+    #define anythingWithDescription HC_anythingWithDescription
 #endif

@@ -10,23 +10,17 @@
 
 @implementation AppDelegate
 
-@synthesize window;
+@synthesize window = window_;
+@synthesize rootViewController = rootViewController_;
 
 
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-	
-    TimeLineViewController* viewController = [[[TimeLineViewController alloc] init] autorelease];
-	viewController.title = @"Public Time Line!";
-	viewController.url = PUBLIC_TIMELINE;
-	UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-	navigationController.navigationBar.barStyle = UIBarStyleBlack;
-	[self.window addSubview:navigationController.view];
+	self.rootViewController = [[RootViewController alloc] init];
+	[self.window addSubview:self.rootViewController.view];
     [self.window makeKeyAndVisible];
-
     return YES;
 }
 
@@ -64,7 +58,8 @@
 
 
 - (void)dealloc {
-    [window release];
+    self.window = nil;
+	self.rootViewController = nil;
     [super dealloc];
 }
 

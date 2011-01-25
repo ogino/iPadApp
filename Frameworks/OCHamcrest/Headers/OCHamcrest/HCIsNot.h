@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsNot.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,6 +11,7 @@
 
 /**
     Calculates the logical negation of a matcher.
+    \ingroup core
 */
 @interface HCIsNot : HCBaseMatcher
 {
@@ -23,34 +24,27 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
-    Inverts the rule, providing a shortcut to the frequently used isNot(equalTo(x)).
+    Inverts the rule, or provides a shortcut to the frequently used isNot(equalTo(x)).
 
     For example:
-@code
+\code
 assertThat(cheese, isNot(equalTo(smelly)))
-@endcode
+\endcode
     vs.
-@code
+\code
 assertThat(cheese, isNot(smelly))
-@endcode
-*/
-id<HCMatcher> HC_isNot(id item);
+\endcode
 
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+    \see HCIsNot
+    \ingroup core
+ */
+OBJC_EXPORT id<HCMatcher> HC_isNot(id matcherOrValue);
 
 /**
-    Shorthand for HC_isNot, available if HC_SHORTHAND is defined.
-*/
-#define isNot HC_isNot
-
+    Shorthand for \ref HC_isNot, available if HC_SHORTHAND is defined.
+    \ingroup core
+ */
+#ifdef HC_SHORTHAND
+    #define isNot HC_isNot
 #endif

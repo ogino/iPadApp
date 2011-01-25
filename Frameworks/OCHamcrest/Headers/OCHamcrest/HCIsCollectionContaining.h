@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsCollectionContaining.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -9,6 +9,10 @@
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
+/**
+    Matches a collection if any element satisfies a given matcher.
+    \ingroup collection
+ */
 @interface HCIsCollectionContaining : HCBaseMatcher
 {
     id<HCMatcher> elementMatcher;
@@ -20,32 +24,35 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_hasItem(id item);
+/**
+    Matches a collection if any element satifies a given matcher.
+    \param item  A matcher, or a value for \ref equalTo matching.
+    \see HCIsCollectionContaining
+    \ingroup collection
+ */
+OBJC_EXPORT id<HCMatcher> HC_hasItem(id item);
 
 /**
-    @param item comma-separated list of items ending with nil.
-*/
-id<HCMatcher> HC_hasItems(id item, ...);
-
-#ifdef __cplusplus
-}
-#endif
-
-
+    Shorthand for \ref HC_hasItem, available if HC_SHORTHAND is defined.
+    \ingroup collection
+ */
 #ifdef HC_SHORTHAND
+    #define hasItem HC_hasItem
+#endif
+
 
 /**
-    Shorthand for HC_hasItem, available if HC_SHORTHAND is defined.
-*/
-#define hasItem HC_hasItem
+    Matches a collection if all matchers are satisfied by any of the collection's elements.
+    \param items  Comma-separated list of matchers - or values for \ref equalTo matching - ending with \c nil.
+    \see HCIsCollectionContaining
+    \ingroup collection
+ */
+OBJC_EXPORT id<HCMatcher> HC_hasItems(id items, ...);
 
 /**
-    Shorthand for HC_hasItems, available if HC_SHORTHAND is defined.
-*/
-#define hasItems HC_hasItems
-
+    Shorthand for \ref HC_hasItems, available if HC_SHORTHAND is defined.
+    \ingroup collection
+ */
+#ifdef HC_SHORTHAND
+    #define hasItems HC_hasItems
 #endif

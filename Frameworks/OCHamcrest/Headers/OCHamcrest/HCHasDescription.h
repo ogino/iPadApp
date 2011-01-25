@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCHasDescription.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,8 +10,9 @@
 
 
 /**
-    Does the object's description satisfy a given matcher?
-*/
+    Does the object's \c -description satisfy a given matcher?
+    \ingroup object
+ */
 @interface HCHasDescription : HCInvocationMatcher
 {
 }
@@ -22,27 +23,23 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
     Evaluates whether [item description] satisfies a given matcher.
+    
+    Examples:
+    \li \ref hasDescription(\ref startsWith(\@"foo"))
+    \li \ref hasDescription(\@"bar")
 
-    Example: hasDescription(equalTo(result))
+    \param matcherOrValue  A matcher, or a value for \ref equalTo matching.
+    \see HCHasDescription
+    \ingroup object
 */
-id<HCMatcher> HC_hasDescription(id item);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+OBJC_EXPORT id<HCMatcher> HC_hasDescription(id matcherOrValue);
 
 /**
-    Shorthand for HC_hasDescription, available if HC_SHORTHAND is defined.
-*/
-#define hasDescription HC_hasDescription
-
+    Shorthand for \ref HC_hasDescription, available if HC_SHORTHAND is defined.
+    \ingroup object
+ */
+#ifdef HC_SHORTHAND
+    #define hasDescription HC_hasDescription
 #endif

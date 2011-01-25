@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContainingKey.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -9,6 +9,10 @@
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
+/**
+     Matches dictionaries containing a key satisfying a given matcher.
+    \ingroup collection
+ */
 @interface HCIsDictionaryContainingKey : HCBaseMatcher
 {
     id<HCMatcher> keyMatcher;
@@ -20,22 +24,18 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_hasKey(id item);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+/**
+    Matches dictionaries containing a key satisfying a given matcher.
+    \param matcherOrValue  A matcher, or a value for \ref equalTo matching.
+    \see HCIsDictionaryContainingKey
+    \ingroup collection
+ */
+OBJC_EXPORT id<HCMatcher> HC_hasKey(id matcherOrValue);
 
 /**
-    Shorthand for HC_hasKey, available if HC_SHORTHAND is defined.
-*/
-#define hasKey HC_hasKey
-
+    Shorthand for \ref HC_hasKey, available if HC_SHORTHAND is defined.
+    \ingroup collection
+ */
+#ifdef HC_SHORTHAND
+    #define hasKey HC_hasKey
 #endif

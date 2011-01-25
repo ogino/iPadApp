@@ -10,6 +10,7 @@
 #import "Categories.h"
 #import "TimeLine.h"
 #import "URLLoader.h"
+#import "HeaderTrgger.h"
 
 
 @interface TimeLineViewController : UITableViewController {
@@ -20,8 +21,7 @@
 	NSString* userId_;
 	NSString* password_;
 	NSArray* tweets_;
-	UIActivityIndicatorView* indicator_;
-	UILabel* label_;
+	HeaderTrgger* trigger_;
 	NSMutableArray* images_;
 }
 
@@ -31,8 +31,7 @@
 @property (nonatomic, copy) NSString* userId;
 @property (nonatomic, copy) NSString* password;
 @property (nonatomic, retain) NSArray* tweets;
-@property (nonatomic, retain) UIActivityIndicatorView* indicator;
-@property (nonatomic, retain) UILabel* label;
+@property (nonatomic, retain) HeaderTrgger* trigger;
 @property (nonatomic, retain) NSMutableArray* images;
 
 @end

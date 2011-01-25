@@ -1,24 +1,18 @@
 //
 //  OCHamcrest - HCWrapInMatcher.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
 
+#import <objc/objc-api.h>
+
 @protocol HCMatcher;
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
-    Returns @a item wrapped (if necessary) in an HCIsEqual matcher.
-    
-    @a item is returned as-is if it is already an HCMatcher.
-*/
-id<HCMatcher> HC_wrapInMatcher(id item);
-
-#ifdef __cplusplus
-}
-#endif
+    Wraps argument in a matcher, if necessary.
+    \return The argument as-if if it is already a matcher, otherwise wrapped an \ref equalTo matcher.
+    \ingroup helpers
+ */
+OBJC_EXPORT id<HCMatcher> HCWrapInMatcher(id matcherOrValue);

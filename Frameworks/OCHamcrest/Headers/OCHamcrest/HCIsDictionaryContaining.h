@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContaining.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -9,35 +9,37 @@
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
+/**
+    Matches dictionaries containing a key-value pair satisfying a given pair of matchers.
+    \ingroup collection
+ */
 @interface HCIsDictionaryContaining : HCBaseMatcher
 {
     id<HCMatcher> keyMatcher;
     id<HCMatcher> valueMatcher;
 }
 
-+ (HCIsDictionaryContaining*) isDictionaryContainingKey:(id<HCMatcher>)theKeyMatcher
-                                                  value:(id<HCMatcher>)theValueMatcher;
-- (id) initWithKeyMatcher:(id<HCMatcher>)theKeyMatcher valueMatcher:(id<HCMatcher>)theValueMatcher;
++ (HCIsDictionaryContaining*) isDictionaryContainingKey:(id<HCMatcher>)aKeyMatcher
+                                                  value:(id<HCMatcher>)aValueMatcher;
+- (id) initWithKeyMatcher:(id<HCMatcher>)aKeyMatcher
+             valueMatcher:(id<HCMatcher>)aValueMatcher;
 
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_hasEntry(id key, id value);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+/**
+    Matches dictionaries containing a key-value pair satisfying a given pair of matchers.
+    \param keyMatcher    A matcher - or a value for \ref equalTo matching - for the key.
+    \param valueMatcher  A matcher - or a value for \ref equalTo matching - for the value.
+    \see HCIsDictionaryContaining
+    \ingroup collection
+ */
+OBJC_EXPORT id<HCMatcher> HC_hasEntry(id keyMatcher, id valueMatcher);
 
 /**
-    Shorthand for HC_hasEntry, available if HC_SHORTHAND is defined.
-*/
-#define hasEntry HC_hasEntry
-
+    Shorthand for \ref HC_hasEntry, available if HC_SHORTHAND is defined.
+    \ingroup collection
+ */
+#ifdef HC_SHORTHAND
+    #define hasEntry HC_hasEntry
 #endif

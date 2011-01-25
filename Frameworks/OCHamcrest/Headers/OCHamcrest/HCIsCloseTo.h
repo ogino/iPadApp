@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsCloseTo.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,7 +11,8 @@
 
 /**
     Is the value a number equal to a value within some range of acceptable error?
-*/
+    \ingroup number
+ */
 @interface HCIsCloseTo : HCBaseMatcher
 {
     double value;
@@ -24,25 +25,17 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
     Is the value a number equal to a value within some range of acceptable error?
+    \see HCIsCloseTo
+    \ingroup number
 */
-id<HCMatcher> HC_closeTo(double aValue, double anError);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+OBJC_EXPORT id<HCMatcher> HC_closeTo(double aValue, double anError);
 
 /**
-    Shorthand for HC_closeTo, available if HC_SHORTHAND is defined.
+    Shorthand for \ref HC_closeTo, available if HC_SHORTHAND is defined.
+    \ingroup number
 */
-#define closeTo HC_closeTo
-
+#ifdef HC_SHORTHAND
+    #define closeTo HC_closeTo
 #endif

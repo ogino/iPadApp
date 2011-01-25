@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCStringContains.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,7 +11,8 @@
 
 /**
     Tests if the argument is a string that contains a substring.
-*/
+    \ingroup text
+ */
 @interface HCStringContains : HCSubstringMatcher
 {
 }
@@ -21,22 +22,17 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
-id<HCMatcher> HC_containsString(NSString* aSubstring);
-
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+/**
+    Tests if the argument is a string that contains a substring.
+    \see HCStringContains
+    \ingroup text
+ */
+OBJC_EXPORT id<HCMatcher> HC_containsString(NSString* aSubstring);
 
 /**
-    Shorthand for HC_containsString, available if HC_SHORTHAND is defined.
-*/
-#define containsString HC_containsString
-
+    Shorthand for \ref HC_containsString, available if HC_SHORTHAND is defined.
+    \ingroup text
+ */
+#ifdef HC_SHORTHAND
+    #define containsString HC_containsString
 #endif

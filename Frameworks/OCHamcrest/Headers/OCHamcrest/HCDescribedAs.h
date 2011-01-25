@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCDescribedAs.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,7 +11,8 @@
 
 /**
     Provides a custom description to another matcher.
-*/
+    \ingroup core
+ */
 @interface HCDescribedAs : HCBaseMatcher
 {
     NSString* descriptionTemplate;
@@ -29,28 +30,21 @@
 @end
 
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /**
     Wraps an existing matcher and overrides the description when it fails.
-    
+
     Optional values following the matcher are substituted for \%0, \%1, etc.
     The last argument must be nil.
-*/
-id<HCMatcher> HC_describedAs(NSString* description, id<HCMatcher> matcher, ...);
 
-#ifdef __cplusplus
-}
-#endif
-
-
-#ifdef HC_SHORTHAND
+    \see HCDescribedAs
+    \ingroup core
+ */
+OBJC_EXPORT id<HCMatcher> HC_describedAs(NSString* description, id<HCMatcher> matcher, ...);
 
 /**
-    Shorthand for HC_describedAs, available if HC_SHORTHAND is defined.
-*/
-#define describedAs HC_describedAs
-
+    Shorthand for \ref HC_describedAs, available if HC_SHORTHAND is defined.
+    \ingroup core
+ */
+#ifdef HC_SHORTHAND
+    #define describedAs HC_describedAs
 #endif

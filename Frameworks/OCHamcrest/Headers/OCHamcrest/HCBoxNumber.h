@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCBoxNumber.h
-//  Copyright 2009 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,7 +11,8 @@ namespace hamcrest {
 
 /**
     Boxes scalar value in NSNumber, specialized per type.
-*/
+    \ingroup number
+ */
 template <typename T>
 inline
 NSNumber* boxNumber(T value)
