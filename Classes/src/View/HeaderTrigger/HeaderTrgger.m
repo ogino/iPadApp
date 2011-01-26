@@ -16,12 +16,13 @@
 
 #define LABEL_WIDTH 160
 #define LABEL_HEIGHT 80
+#define BEFORE_LOAD @"下げて更新！\nさあどうぞ！"
 
-- (void) createLabel {
+- (void)createLabel {
 	self.label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, LABEL_WIDTH, LABEL_HEIGHT)] autorelease];
 	self.label.backgroundColor = [UIColor clearColor];
 	self.label.textColor = [UIColor whiteColor];
-	self.label.text = @"下げて更新！\nさあどうぞ！";
+	self.label.text = BEFORE_LOAD;
 	self.label.numberOfLines = 0;
 	self.label.lineBreakMode = UILineBreakModeWordWrap;
 	self.label.textAlignment = UITextAlignmentCenter;
@@ -32,15 +33,19 @@
 	[self.indicator startAnimating];
 }
 
+#pragma mark -
+#pragma mark Inherit Methods
+
 #define HALF_WIDTH (self.frame.size.width / 2)
 #define HALF_HEIGHT (self.frame.size.height / 2)
+#define LABEL_Y_CENTER (self.frame.size.height - (80 / 2))
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
 		[self createLabel];
 		[self createIndicator];
-		self.label.center = CGPointMake(HALF_WIDTH, HALF_HEIGHT);
+		self.label.center = CGPointMake(HALF_WIDTH, LABEL_Y_CENTER);
 		self.indicator.center = CGPointMake(self.label.frame.origin.x - (self.indicator.frame.size.width / 2), self.label.center.y);
 		[self addSubview:self.label];
 		[self addSubview:self.indicator];
@@ -56,6 +61,17 @@
     // Drawing code.
 }
 */
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)setText:(NSString*)text {
+	self.label.text = text;
+}
+
+- (void)restoreText {
+	self.label.text = BEFORE_LOAD;
+}
 
 - (void)dealloc {
 	self.label = nil;

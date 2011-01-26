@@ -23,6 +23,8 @@
 	NSArray* tweets_;
 	HeaderTrgger* trigger_;
 	NSMutableArray* images_;
+// Field Only
+	BOOL triggered;
 }
 
 @property (nonatomic, assign) BOOL loaded;

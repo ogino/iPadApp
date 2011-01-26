@@ -18,4 +18,7 @@
 @property (nonatomic, retain) UILabel* label;
 @property (nonatomic, retain) UIActivityIndicatorView* indicator;
 
+- (void)setText:(NSString*)text;
+- (void)restoreText;
+
 @end

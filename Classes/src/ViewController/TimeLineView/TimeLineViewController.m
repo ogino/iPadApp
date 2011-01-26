@@ -23,24 +23,30 @@
 #pragma mark -
 #pragma mark Private Methods
 
+#define HEADER_SIZE 400
+
 - (void)createTrigerHeader {
 	CGRect rect = self.tableView.bounds;
-	rect.origin.y -= 80;
-	rect.size.height = 80;
+	rect.origin.y -= HEADER_SIZE;
+	rect.size.height = HEADER_SIZE;
 	self.trigger = [[HeaderTrgger alloc] initWithFrame:rect];
 	[self.tableView addSubview:self.trigger];
 }
 
 - (void)refreshTable {
+	[self.trigger restoreText];
+	self.tableView.scrollEnabled = YES;
 	[self.tableView reloadData];
 }
+
+#define ADJUST_SIZE 80
 
 - (UIImage*)createImage:(NSString*)urlStr {
 	NSURL* url = [NSURL URLWithString:urlStr];
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
 	NSData* data = [urlLoader request:url];
 	UIImage* image = [UIImage imageWithData:data];
-	return [image shrinkImage:CGRectMake(0, 0, 80, 80)];
+	return [image shrinkImage:CGRectMake(0, 0, ADJUST_SIZE, ADJUST_SIZE)];
 }
 
 - (void)createUserImage {
@@ -54,7 +60,6 @@
 - (void)requestTimeLine {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	[self createTrigerHeader];
 	self.tweets = (NSArray*)[self.timeLine createData];
 	[self createUserImage];
 	self.loaded = YES;
@@ -65,20 +70,6 @@
 - (void)fetchedTimeLine:(NSNotification*) notification {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[self performSelectorOnMainThread:@selector(refreshTable) withObject:nil waitUntilDone:YES];
-}
-
-- (UIImage*)adjustImage:(UIImage*)image {
-	CGRect rect = CGRectMake(0, 0, 80, 80);
-
-	UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
-
-	[image drawInRect:rect];
-
-	UIImage* shrinkedImage = UIGraphicsGetImageFromCurrentImageContext();
-
-	UIGraphicsEndImageContext();
-
-	return shrinkedImage;
 }
 
 
@@ -102,19 +93,21 @@
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
+	triggered = NO;
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[self createTrigerHeader];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	if (!self.loaded)
 		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
-	else
+	else if (!triggered)
 		[self refreshTable];
 }
 
@@ -131,6 +124,10 @@
     return YES;
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	[self.trigger removeFromSuperview];
+	[self createTrigerHeader];
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -158,7 +155,7 @@
 		cell.detailTextLabel.numberOfLines = 0;
 		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 		NSDictionary* user = [tweet objectForKey:@"user"];
-		cell.imageView.image = [self.images objectAtIndex:indexPath.row];
+		cell.imageView.image = [self.images count] >= indexPath.row ? [self.images objectAtIndex:indexPath.row] : nil;
 		cell.textLabel.text = (NSString*)[user objectForKey:@"name"];
 		cell.textLabel.numberOfLines = 0;
 		cell.textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -172,7 +169,6 @@
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -204,6 +200,29 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#define TRIGGER_TOGGLE -(self.tableView.frame.size.height / 3)
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	CGRect rect = self.tableView.bounds;
+	if (rect.origin.y < TRIGGER_TOGGLE && self.loaded) {
+		triggered = YES;
+		[self.trigger setText:@"読み込みを行います！"];
+	} else {
+		triggered = NO;
+		[self.trigger restoreText];
+	}
+
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	if (triggered) {
+		self.tableView.scrollEnabled = NO;
+		self.tweets = nil;
+		[self.images removeAllObjects];
+		self.loaded = NO;
+		[self requestTimeLine];
+	}
+}
 
 #pragma mark -
 #pragma mark Memory management
