@@ -14,7 +14,7 @@
 @synthesize label = label_;
 @synthesize indicator = indicator_;
 
-#define LABEL_WIDTH 160
+#define LABEL_WIDTH 180
 #define LABEL_HEIGHT 80
 #define BEFORE_LOAD @"下げて更新！\nさあどうぞ！"
 
