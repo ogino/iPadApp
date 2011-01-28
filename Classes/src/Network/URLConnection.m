@@ -59,13 +59,15 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:CON_FAIL object: self];
 }
 
-- (void) createConnection:(NSURLRequest *)request {
+- (void)createConnection:(NSURLRequest *)request {
 	self.done = NO;
 	self.connection = [NSURLConnection connectionWithRequest:request delegate:self];
 	NSTimer* timer = [NSTimer timerWithTimeInterval:self.timeoutInterval target:self selector:@selector(abortRequest:) userInfo:nil repeats:NO];
 	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 	while (!self.done)
 		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+	[timer invalidate];
+	[self.connection cancel];
 }
 
 - (void)dealloc {
