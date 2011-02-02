@@ -13,11 +13,12 @@
 
 static NSArray* titles;
 static NSArray* urls;
+static NSArray* icons;
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (UINavigationController*)createTLNavigationController:(NSString*)title url:(NSString*)url{
+- (UINavigationController*)createTLNavigationController:(NSString*)title url:(NSString*)url {
 	TimeLineViewController* viewController = [[[TimeLineViewController alloc] init] autorelease];
 	viewController.title = title;
 	viewController.url = url;
@@ -44,6 +45,7 @@ static NSArray* urls;
 		self.delegate = self;
 		titles = [NSArray arrayWithObjects:PUBLIC_TIMELINE_TITLE, nil];
 		urls = [NSArray arrayWithObjects:PUBLIC_TIMELINE_URL, nil];
+		icons = [NSArray arrayWithObjects:PUBLIC_TIMELINE_ICON, nil];
 		self.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
 		self.viewControllers = [self createViewControllers];
 	}

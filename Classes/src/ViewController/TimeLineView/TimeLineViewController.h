@@ -25,6 +25,7 @@
 	NSMutableArray* images_;
 // Field Only
 	BOOL triggered;
+	NSArray* tweetBuff;
 }
 
 @property (nonatomic, assign) BOOL loaded;

@@ -12,4 +12,6 @@ static NSString* const CON_FAIL = @"URL connection is terminated..., caused by f
 
 static NSString* const PUBLIC_TIMELINE_TITLE = @"Public time line";
 static NSString* const PUBLIC_TIMELINE_URL = @"http://api.twitter.com/1/statuses/public_timeline.json";
+static NSString* const PUBLIC_TIMELINE_ICON = @"public.png";
+
 static NSString* const TIMELINE_NOFIFY = @"TIMELINE NOTIFICATION";

@@ -33,12 +33,6 @@
 	[self.tableView addSubview:self.trigger];
 }
 
-- (void)refreshTable {
-	[self.trigger restoreText];
-	self.tableView.scrollEnabled = YES;
-	[self.tableView reloadData];
-}
-
 #define ADJUST_SIZE 80
 
 - (UIImage*)createImage:(NSString*)urlStr {
@@ -50,6 +44,7 @@
 }
 
 - (void)createUserImage {
+	[self.images removeAllObjects];
 	for (NSMutableDictionary* tweet in self.tweets) {
 		NSMutableDictionary* user = [tweet objectForKey:@"user"];
 		UIImage* image = [self createImage:(NSString*)[user objectForKey:@"profile_image_url"]];
@@ -57,18 +52,27 @@
 	}
 }
 
+- (void)refreshTable {
+	[self.trigger restoreText];
+	self.tweets = tweetBuff;
+	tweetBuff = nil;
+	[self createUserImage];
+	self.tableView.scrollEnabled = YES;
+	[self.tableView reloadData];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 - (void)requestTimeLine {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	self.tweets = (NSArray*)[self.timeLine createData];
-	[self createUserImage];
+	tweetBuff = (NSArray*)[self.timeLine createData];
+	[tweetBuff retain];
 	self.loaded = YES;
 	[[NSNotificationCenter defaultCenter] postNotificationName:TIMELINE_NOFIFY object:nil];
 	[pool release];
 }
 
 - (void)fetchedTimeLine:(NSNotification*) notification {
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	[self performSelectorOnMainThread:@selector(refreshTable) withObject:nil waitUntilDone:YES];
 }
 
@@ -149,13 +153,13 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
     }
-	if (![self.tweets isEmpty]) {
+	if (![self.tweets isEmpty] && self.tweets.count > indexPath.row) {
 		NSDictionary* tweet = [self.tweets objectAtIndex:indexPath.row];
 		cell.detailTextLabel.text = (NSString*)[tweet objectForKey:@"text"];
 		cell.detailTextLabel.numberOfLines = 0;
 		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 		NSDictionary* user = [tweet objectForKey:@"user"];
-		cell.imageView.image = [self.images count] >= indexPath.row ? [self.images objectAtIndex:indexPath.row] : nil;
+		cell.imageView.image = (self.images != nil && [self.images count] >= indexPath.row) ? [self.images objectAtIndex:indexPath.row] : nil;
 		cell.textLabel.text = (NSString*)[user objectForKey:@"name"];
 		cell.textLabel.numberOfLines = 0;
 		cell.textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -200,7 +204,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#define TRIGGER_TOGGLE -(self.tableView.frame.size.height / 3)
+#define TRIGGER_TOGGLE -(self.tableView.frame.size.height / 6)
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	CGRect rect = self.tableView.bounds;
@@ -216,11 +220,11 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
 	if (triggered) {
-		self.tableView.scrollEnabled = NO;
-		self.tweets = nil;
-		[self.images removeAllObjects];
+//		self.tableView.scrollEnabled = NO;
+//		self.tweets = nil;
 		self.loaded = NO;
-		[self requestTimeLine];
+		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
+		//[self requestTimeLine];
 	}
 }
 
