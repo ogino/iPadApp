@@ -18,10 +18,11 @@ static NSArray* icons;
 #pragma mark -
 #pragma mark Private Methods
 
-- (UINavigationController*)createTLNavigationController:(NSString*)title url:(NSString*)url {
+- (UINavigationController*)createTLNavigationController:(NSString*)title url:(NSString*)url icon:(NSString*)icon {
 	TimeLineViewController* viewController = [[[TimeLineViewController alloc] init] autorelease];
 	viewController.title = title;
 	viewController.url = url;
+	viewController.tabBarItem.image = [UIImage imageNamed:icon];
 	UINavigationController* navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 	navigationController.navigationBar.barStyle = UIBarStyleBlack;
 	return navigationController;
@@ -31,7 +32,8 @@ static NSArray* icons;
 	NSMutableArray* viewControllers = [NSMutableArray array];
 	NSInteger index = 0;
 	for (NSString* title in titles) {
-		[viewControllers addObject:[self createTLNavigationController:title url:[urls objectAtIndex:index++]]];
+		[viewControllers addObject:[self createTLNavigationController:title url:[urls objectAtIndex:index] icon:[icons objectAtIndex:index]]];
+		index++;
 	}
 	return viewControllers;
 }

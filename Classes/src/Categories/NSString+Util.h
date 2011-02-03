@@ -11,6 +11,8 @@
 
 @interface NSString (NSString_Util)
 
-- (BOOL) isEmpty;
+- (BOOL)isEmpty;
+
++ (NSString*)encodeUTF8:(NSString*)source;
 
 @end

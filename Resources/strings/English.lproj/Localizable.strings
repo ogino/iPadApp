@@ -1,0 +1,9 @@
+/*
+   Localizable.strings
+   AED
+
+   Created by 荻野 雅 on 11/02/02.
+   Copyright 2011 __MyCompanyName__. All rights reserved.
+ */
+refresh = "Scroll down and release. Refresh soon!";
+loading = "Renew time line.";

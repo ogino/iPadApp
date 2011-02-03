@@ -76,6 +76,10 @@
 	[self performSelectorOnMainThread:@selector(refreshTable) withObject:nil waitUntilDone:YES];
 }
 
+- (void)showTweetView {
+	NSLog(@"%@: Tweet Now!", [NSDate date]);
+}
+
 
 #pragma mark -
 #pragma mark Initialization
@@ -93,6 +97,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTweetView)];
 
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
@@ -210,8 +216,8 @@
 	CGRect rect = self.tableView.bounds;
 	if (rect.origin.y < TRIGGER_TOGGLE && self.loaded) {
 		triggered = YES;
-		[self.trigger setText:@"読み込みを行います！"];
-	} else {
+		[self.trigger setText:NSLocalizedString(@"loading", @"")];
+	} else if (self.loaded) {
 		triggered = NO;
 		[self.trigger restoreText];
 	}
@@ -220,11 +226,8 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
 	if (triggered) {
-//		self.tableView.scrollEnabled = NO;
-//		self.tweets = nil;
 		self.loaded = NO;
 		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
-		//[self requestTimeLine];
 	}
 }
 

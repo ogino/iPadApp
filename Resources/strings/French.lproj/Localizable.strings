@@ -1,0 +1,9 @@
+/*
+   Localizable.strings
+   AED
+
+   Created by 荻野 雅 on 11/02/02.
+   Copyright 2011 __MyCompanyName__. All rights reserved.
+ */
+refresh = "Faites descendre l'écran et libérez. Régénérez bientôt!";
+loading = "Remplacez la ligne de temps.";

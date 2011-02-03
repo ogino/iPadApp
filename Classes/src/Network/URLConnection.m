@@ -55,6 +55,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	NSLog(@"At: %s, Line: %d", __FUNCTION__, __LINE__);
 	NSLog(@"Error: code is \"%d\", domain is \"%@\", description is \"%@\"", [error code], [error domain], [error localizedDescription]);
     [[NSNotificationCenter defaultCenter] postNotificationName:CON_FAIL object: self];
 }
@@ -76,6 +77,14 @@
 	self.connection = nil;
 	self.data = nil;
 	[super dealloc];
+}
+
+@end
+
+@implementation NSURLRequest(AllowAllCerts)
+
++ (BOOL)allowsAnyHTTPSCertificateForHost:(NSString*)host {
+    return YES;
 }
 
 @end

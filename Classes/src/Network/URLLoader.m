@@ -30,8 +30,7 @@
 
 - (NSURL*)createGETURL:(NSURL*)url get:(NSString*)get {
 	NSString* urlStr = [url absoluteString];
-	NSString* encGET = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)get, NULL, CFSTR(";,/?:@&=+$#"), kCFStringEncodingUTF8);
-	NSString* reqURLStr = [NSString stringWithFormat:@"%@?%@", urlStr, encGET];
+	NSString* reqURLStr = [NSString stringWithFormat:@"%@?%@", urlStr, get];
 	return [NSURL URLWithString:reqURLStr];
 }
 

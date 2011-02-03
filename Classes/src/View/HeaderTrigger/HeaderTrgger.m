@@ -14,9 +14,9 @@
 @synthesize label = label_;
 @synthesize indicator = indicator_;
 
-#define LABEL_WIDTH 180
+#define LABEL_WIDTH 500
 #define LABEL_HEIGHT 80
-#define BEFORE_LOAD @"下げて更新！\nさあどうぞ！"
+#define BEFORE_LOAD NSLocalizedString(@"refresh", @"")
 
 - (void)createLabel {
 	self.label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, LABEL_WIDTH, LABEL_HEIGHT)] autorelease];

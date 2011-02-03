@@ -11,9 +11,13 @@
 
 @implementation NSString (NSString_Util)
 
-- (BOOL) isEmpty {
+- (BOOL)isEmpty {
 	if (self == nil) return YES;
 	return (BOOL)([self length] == 0);
+}
+
++ (NSString*)encodeUTF8:(NSString*)source {
+	return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)source, NULL, CFSTR(";,/?:@&=+$#"), kCFStringEncodingUTF8);
 }
 
 @end
