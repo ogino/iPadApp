@@ -58,6 +58,14 @@
 	return [self sendRequest:request];
 }
 
+- (NSData*)request:(NSURL *)url method:(NSString*)method header:(NSString*)header headerField:(NSString*)headerField body:(NSData*)body {
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	[request setHTTPMethod:method];
+	[request setValue:header forHTTPHeaderField:headerField];
+    [request setHTTPBody:body];
+	return [self sendRequest:request];
+}
+
 - (NSData*)request:(NSURL*)url timeoutInterval:(NSTimeInterval)timeoutInterval {
 	self.connection.timeoutInterval = timeoutInterval;
 	return [self request:url];
@@ -72,6 +80,12 @@
 	self.connection.timeoutInterval = timeoutInterval;
 	return [self request:url post:post];
 }
+
+- (NSData*)request:(NSURL *)url method:(NSString*)method header:(NSString*)header headerField:(NSString*)headerField body:(NSData*)body timeoutInterval:(NSTimeInterval)timeoutInterval {
+	self.connection.timeoutInterval = timeoutInterval;
+	return [self request:url method:method header:header headerField:headerField body:body];
+}
+
 
 - (void)dealloc {
 	self.connection = nil;

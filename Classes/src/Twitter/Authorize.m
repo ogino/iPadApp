@@ -9,16 +9,18 @@
 #import "Authorize.h"
 #import "NSArray+Util.h"
 #import "NSString+Util.h"
-#import "OAMutableURLRequest.h"
-#import "OADataFetcher.h"
-#import "OAServiceTicket.h"
+#import "URLLoader.h"
+#import "OAuthCore.h"
 
 @implementation Authorize
 
-@synthesize consumer = consumer_;
-@synthesize token = token_;
 @synthesize userId = userId_;
 @synthesize password = password_;
+@synthesize consumerKey = consumerKey_;
+@synthesize consumerSecret = consumerSecret_;
+@synthesize requestKey = requestKey_;
+@synthesize requestSecret = requestSecret_;
+
 
 #pragma mark -
 #pragma mark Definitions
@@ -31,19 +33,25 @@
 #define AUTHORIZE_API @"https://api.twitter.com/oauth/authorize"
 
 #define REGEX_TOKEN @"^oauth_token="
-#define REGEX_TOKEN_SECRET @"^oauth_token_secret="
+#define REGEX_SECRET @"^oauth_token_secret="
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)ticket:(OAServiceTicket*)ticket didFinishWithData:(NSData *)data {
-    NSString *dataString = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    NSLog(@"data: %@", dataString);
-
+- (NSString*)createFixValue:(NSString*)rawStr remove:(NSString*)pattern {
+	NSError* error = nil;
+	NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
+	NSArray* matches = [regex matchesInString:rawStr options:NSMatchingCompleted range:NSMakeRange(0, rawStr.length)];
+	if (![NSArray isEmpty:matches]) return [rawStr stringByReplacingOccurrencesOfString:pattern withString:@""];
+	return nil;
 }
 
-- (void)ticket:(OAServiceTicket*)ticket didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
+- (void)createRequestKeys:(NSString*)rawStr {
+	NSArray* rawKeys = [rawStr componentsSeparatedByString:@"&"];
+	for (NSString* rawKey in rawKeys) {
+		if ([NSString isEmpty:self.requestKey]) self.requestKey = [self createFixValue:rawKey remove:REGEX_TOKEN];
+		if ([NSString isEmpty:self.requestSecret]) self.requestSecret = [self createFixValue:rawKey remove:REGEX_SECRET];
+	}
 }
 
 
@@ -58,14 +66,16 @@
 	return self;
 }
 
-
 #define GET_METHOD @"GET"
 
 - (void)createOAuthKeys {
-	OAMutableURLRequest* request =
-	[[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:REQUEST_API] consumer:self.consumer token:self.token realm:nil signatureProvider:nil] autorelease];
-	OADataFetcher* fetcher = [[[OADataFetcher alloc] init] autorelease];
-	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(ticket:didFinishWithData:) didFailSelector:@selector(ticket:didFailWithError:)];
+	NSURL* url = [NSURL URLWithString:REQUEST_API];
+	NSData* body = [[NSString stringWithString:@""] dataUsingEncoding:NSUTF8StringEncoding];
+	NSString* method = GET_METHOD;
+	NSString* header = OAuthorizationHeader(url, method, body, self.consumerKey, self.consumerSecret, self.requestKey, self.requestSecret, YES);
+	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
+	NSData* data = [urlLoader request:url method:method header:header headerField:@"Authorization" body:body];
+	[self createRequestKeys:[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]];
 }
 
 
@@ -74,17 +84,21 @@
 
 - (id)init {
 	if (self = [super init]) {
-		self.consumer = [[[OAConsumer alloc] initWithKey:CONSUMER_KEY secret:CONSUMER_SECRET] autorelease];
-		self.token = nil;
+		self.consumerKey = CONSUMER_KEY;
+		self.consumerSecret = CONSUMER_SECRET;
+		self.requestKey = nil;
+		self.requestSecret = nil;
 	}
 	return self;
 }
 
 - (void)dealloc {
-	self.consumer = nil;
-	self.token = nil;
 	self.userId = nil;
 	self.password = nil;
+	self.consumerKey = nil;
+	self.consumerSecret = nil;
+	self.requestKey = nil;
+	self.requestSecret = nil;
 	[super dealloc];
 }
 

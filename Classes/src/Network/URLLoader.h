@@ -27,10 +27,14 @@
 
 - (NSData*)request:(NSURL *)url post:(NSString*)post;
 
+- (NSData*)request:(NSURL *)url method:(NSString*)method header:(NSString*)header headerField:(NSString*)headerField body:(NSData*)body;
+
 - (NSData*)request:(NSURL*)url timeoutInterval:(NSTimeInterval)timeoutInterval;
 
 - (NSData*)request:(NSURL*)url get:(NSString*)get timeoutInterval:(NSTimeInterval)timeoutInterval;
 
 - (NSData*)request:(NSURL *)url post:(NSString*)post timeoutInterval:(NSTimeInterval)timeoutInterval;
+
+- (NSData*)request:(NSURL *)url method:(NSString*)method header:(NSString*)header headerField:(NSString*)headerField body:(NSData*)body timeoutInterval:(NSTimeInterval)timeoutInterval;
 
 @end

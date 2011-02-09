@@ -65,8 +65,9 @@
 - (void)requestTimeLine {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	tweetBuff = (NSArray*)[self.timeLine createData];
+	tweetBuff = (NSMutableArray*)[self.timeLine createData];
 	[tweetBuff retain];
+	[tweetBuff addObjectsFromArray:self.tweets];
 	self.loaded = YES;
 	[[NSNotificationCenter defaultCenter] postNotificationName:TIMELINE_NOFIFY object:nil];
 	[pool release];
@@ -100,6 +101,7 @@
 
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTweetView)];
 
+	self.tweets = [NSMutableArray array];
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
@@ -143,12 +145,12 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return ([self.tweets isEmpty]) ? 0 : 1;
+    return ([NSArray isEmpty:self.tweets]) ? 0 : 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ([self.tweets isEmpty]) ? 0 : [self.tweets count];
+    return ([NSArray isEmpty:self.tweets]) ? 0 : [self.tweets count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -159,7 +161,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
     }
-	if (![self.tweets isEmpty] && self.tweets.count > indexPath.row) {
+	if (![NSArray isEmpty:self.tweets] && self.tweets.count > indexPath.row) {
 		NSDictionary* tweet = [self.tweets objectAtIndex:indexPath.row];
 		cell.detailTextLabel.text = (NSString*)[tweet objectForKey:@"text"];
 		cell.detailTextLabel.numberOfLines = 0;

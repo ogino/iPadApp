@@ -11,9 +11,9 @@
 
 @implementation NSString (NSString_Util)
 
-- (BOOL)isEmpty {
-	if (self == nil) return YES;
-	return (BOOL)([self length] == 0);
++ (BOOL)isEmpty:(NSString*)string {
+	if (string == nil) return YES;
+	return (BOOL)([string length] == 0);
 }
 
 + (NSString*)encodeUTF8:(NSString*)source {

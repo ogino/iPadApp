@@ -21,9 +21,9 @@
 
 - (void)testCreateOAuthKeys {
 	[authorize createOAuthKeys];
+	assertThat(authorize.requestKey, notNilValue());
+	assertThat(authorize.requestSecret, notNilValue());
 }
 
-- (void)testAAAA {
-}
 
 @end

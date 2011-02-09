@@ -32,7 +32,7 @@
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
 	NSData* data = [urlLoader request:[NSURL URLWithString:self.url] timeoutInterval:60];
 	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-	return ([json isEmpty]) ? nil : [json JSONValue];
+	return ([NSString isEmpty:json]) ? nil : [json JSONValue];
 }
 
 - (id)createDataWithGet:(NSDictionary*) gets {

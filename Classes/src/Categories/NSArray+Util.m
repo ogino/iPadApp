@@ -11,9 +11,9 @@
 
 @implementation NSArray (NSArray_Util)
 
-- (BOOL) isEmpty {
-	if (self == nil) return YES;
-	return (BOOL)([self count] == 0);
++ (BOOL)isEmpty:(NSArray*)array {
+	if (array == nil) return YES;
+	return (BOOL)([array count] == 0);
 }
 
 @end

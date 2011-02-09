@@ -11,6 +11,6 @@
 
 @interface NSArray (NSArray_Util)
 
-- (BOOL) isEmpty;
++ (BOOL)isEmpty:(NSArray*)array;
 
 @end

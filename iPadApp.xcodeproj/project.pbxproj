@@ -17,6 +17,13 @@
 		8811D69F12791999008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
 		8811D6A0127919FC008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
 		8811D6BB12791A47008D64E5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
+		8816119A1302BB8F00A6EAB3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611951302BB8F00A6EAB3 /* NSData+Base64.m */; };
+		8816119B1302BB8F00A6EAB3 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611971302BB8F00A6EAB3 /* OAuth+Additions.m */; };
+		8816119C1302BB8F00A6EAB3 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611991302BB8F00A6EAB3 /* OAuthCore.m */; };
+		8816119D1302BB8F00A6EAB3 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611951302BB8F00A6EAB3 /* NSData+Base64.m */; };
+		8816119E1302BB8F00A6EAB3 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611971302BB8F00A6EAB3 /* OAuth+Additions.m */; };
+		8816119F1302BB8F00A6EAB3 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611991302BB8F00A6EAB3 /* OAuthCore.m */; };
+		88227D631302AEC4006C0817 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227D621302AEC4006C0817 /* Security.framework */; };
 		8847DA2512AE1D37003F30EF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8847DA2412AE1D37003F30EF /* RootViewController.m */; };
 		88535B631276820700B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
@@ -86,6 +93,13 @@
 		8803442712713BF900C25398 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		8811D69D12791999008D64E5 /* NSString+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Util.h"; sourceTree = "<group>"; };
 		8811D69E12791999008D64E5 /* NSString+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Util.m"; sourceTree = "<group>"; };
+		881611941302BB8F00A6EAB3 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		881611951302BB8F00A6EAB3 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		881611961302BB8F00A6EAB3 /* OAuth+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OAuth+Additions.h"; sourceTree = "<group>"; };
+		881611971302BB8F00A6EAB3 /* OAuth+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OAuth+Additions.m"; sourceTree = "<group>"; };
+		881611981302BB8F00A6EAB3 /* OAuthCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthCore.h; sourceTree = "<group>"; };
+		881611991302BB8F00A6EAB3 /* OAuthCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthCore.m; sourceTree = "<group>"; };
+		88227D621302AEC4006C0817 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8847DA2312AE1D37003F30EF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		8847DA2412AE1D37003F30EF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		88535B611276820700B35A78 /* URLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnection.h; sourceTree = "<group>"; };
@@ -166,6 +180,7 @@
 			files = (
 				8873F4AE12FA3B9000BE1FA1 /* libOCHamcrest.a in Frameworks */,
 				8873F4AF12FA3B9000BE1FA1 /* libOCMock.a in Frameworks */,
+				88227D631302AEC4006C0817 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +253,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				88227D621302AEC4006C0817 /* Security.framework */,
 				888106511270347100F74216 /* libOCHamcrest.a */,
 				888106531270347E00F74216 /* libOCMock.a */,
 			);
@@ -520,6 +536,12 @@
 		88F7A0E112FAA7A200934680 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
+				881611941302BB8F00A6EAB3 /* NSData+Base64.h */,
+				881611951302BB8F00A6EAB3 /* NSData+Base64.m */,
+				881611961302BB8F00A6EAB3 /* OAuth+Additions.h */,
+				881611971302BB8F00A6EAB3 /* OAuth+Additions.m */,
+				881611981302BB8F00A6EAB3 /* OAuthCore.h */,
+				881611991302BB8F00A6EAB3 /* OAuthCore.m */,
 			);
 			path = OAuth;
 			sourceTree = "<group>";
@@ -732,6 +754,9 @@
 				8847DA2512AE1D37003F30EF /* RootViewController.m in Sources */,
 				8866916D12ED442500CD3D2F /* HeaderTrgger.m in Sources */,
 				886691A612ED4E3000CD3D2F /* TabBarController.m in Sources */,
+				8816119A1302BB8F00A6EAB3 /* NSData+Base64.m in Sources */,
+				8816119B1302BB8F00A6EAB3 /* OAuth+Additions.m in Sources */,
+				8816119C1302BB8F00A6EAB3 /* OAuthCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +771,9 @@
 				8873F4B212FA3BB100BE1FA1 /* NSString+Util.m in Sources */,
 				8873F5D812FA4A6600BE1FA1 /* URLLoader.m in Sources */,
 				8873F5D912FA4A6600BE1FA1 /* URLConnection.m in Sources */,
+				8816119D1302BB8F00A6EAB3 /* NSData+Base64.m in Sources */,
+				8816119E1302BB8F00A6EAB3 /* OAuth+Additions.m in Sources */,
+				8816119F1302BB8F00A6EAB3 /* OAuthCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

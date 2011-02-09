@@ -7,22 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OAConsumer.h"
-#import "OAToken.h"
 
 
 @interface Authorize : NSObject {
 @private
-	OAConsumer* consumer_;
-	OAToken* token_;
 	NSString* userId_;
 	NSString* password_;
+	NSString* consumerKey_;
+	NSString* consumerSecret_;
+	NSString* requestKey_;
+	NSString* requestSecret_;
 }
 
-@property (nonatomic, retain) OAConsumer* consumer;
-@property (nonatomic, retain) OAToken* token;
 @property (nonatomic, copy) NSString* userId;
 @property (nonatomic, copy) NSString* password;
+@property (nonatomic, copy) NSString* consumerKey;
+@property (nonatomic, copy) NSString* consumerSecret;
+@property (nonatomic, copy) NSString* requestKey;
+@property (nonatomic, copy) NSString* requestSecret;
 
 - (id)initWithUserInfo:(NSString*)userId password:(NSString*)password;
 - (void)createOAuthKeys;
