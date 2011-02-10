@@ -21,6 +21,7 @@
 @interface AuthorizeTest : SenTestCase {
 @private
 	Authorize* authorize;
+	id urlLoader;
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "URLLoader.h"
 
 
 @interface Authorize : NSObject {
@@ -17,6 +18,10 @@
 	NSString* consumerSecret_;
 	NSString* requestKey_;
 	NSString* requestSecret_;
+	NSString* pinCode_;
+	NSString* accessKey_;
+	NSString* accessSecret_;
+	URLLoader* urlLoader_;
 }
 
 @property (nonatomic, copy) NSString* userId;
@@ -25,8 +30,13 @@
 @property (nonatomic, copy) NSString* consumerSecret;
 @property (nonatomic, copy) NSString* requestKey;
 @property (nonatomic, copy) NSString* requestSecret;
+@property (nonatomic, copy) NSString* pinCode;
+@property (nonatomic, copy) NSString* accessKey;
+@property (nonatomic, copy) NSString* accessSecret;
+@property (nonatomic, retain) URLLoader* urlLoader;
 
 - (id)initWithUserInfo:(NSString*)userId password:(NSString*)password;
-- (void)createOAuthKeys;
+- (void)createOAuthRequestKeys;
+- (void)createOAuthAccessKeys;
 
 @end

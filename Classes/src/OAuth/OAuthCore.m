@@ -28,8 +28,8 @@ static NSData *HMAC_SHA1(NSString *data, NSString *key) {
 	return [NSData dataWithBytes:buf length:CC_SHA1_DIGEST_LENGTH];
 }
 
-NSString *OAuthorizationHeader(NSURL *url, NSString *method, NSData *body, NSString *_oAuthConsumerKey, NSString *_oAuthConsumerSecret,
-							   NSString *_oAuthToken, NSString *_oAuthTokenSecret, BOOL isRequest) {
+NSString *OAuthCreateHeader(NSURL *url, NSString *method, NSData *body, NSString *_oAuthConsumerKey, NSString *_oAuthConsumerSecret,
+							   NSString *_oAuthToken, NSString *_oAuthTokenSecret, NSString *_oAuthPin, BOOL isRequest, BOOL isAccess) {
 	NSString *_oAuthNonce = [NSString ab_GUID];
 	NSString *_oAuthTimestamp = [NSString stringWithFormat:@"%d", (int)[[NSDate date] timeIntervalSince1970]];
 	NSString *_oAuthSignatureMethod = @"HMAC-SHA1";
@@ -37,6 +37,7 @@ NSString *OAuthorizationHeader(NSURL *url, NSString *method, NSData *body, NSStr
 
 	NSMutableDictionary *oAuthAuthorizationParameters = [NSMutableDictionary dictionary];
 	if (isRequest) [oAuthAuthorizationParameters setObject:@"oob" forKey:@"oauth_callback"];  // fixed by Tadashi Ogino
+	if (isAccess) [oAuthAuthorizationParameters setObject:_oAuthPin forKey:@"oauth_verifier"]; // fixed by Tadashi Ogino
 	[oAuthAuthorizationParameters setObject:_oAuthNonce forKey:@"oauth_nonce"];
 	[oAuthAuthorizationParameters setObject:_oAuthTimestamp forKey:@"oauth_timestamp"];
 	[oAuthAuthorizationParameters setObject:_oAuthSignatureMethod forKey:@"oauth_signature_method"];
@@ -104,4 +105,16 @@ NSString *OAuthorizationHeader(NSURL *url, NSString *method, NSData *body, NSStr
 	authorizationHeaderString = [NSString stringWithFormat:@"OAuth %@", authorizationHeaderString];
 
 	return authorizationHeaderString;
+}
+
+NSString *OAuthorizationHeader(NSURL *url, NSString *method, NSData *body, NSString *_oAuthConsumerKey, NSString *_oAuthConsumerSecret, NSString *_oAuthToken, NSString *_oAuthTokenSecret) {
+	return OAuthCreateHeader(url, method, body, _oAuthConsumerKey, _oAuthConsumerSecret, _oAuthToken, _oAuthTokenSecret, nil, NO, NO);
+}
+
+NSString *OAuthAccessHeader(NSURL *url, NSString *method, NSData *body, NSString *_oAuthConsumerKey, NSString *_oAuthConsumerSecret, NSString *_oAuthToken, NSString *_oAuthTokenSecret, NSString* _oAuthPin) {
+	return OAuthCreateHeader(url, method, body, _oAuthConsumerKey, _oAuthConsumerSecret, _oAuthToken, _oAuthTokenSecret, _oAuthPin, NO, YES);
+}
+
+NSString *OAuthRequestHeader(NSURL *url, NSString *method, NSData *body, NSString *_oAuthConsumerKey, NSString *_oAuthConsumerSecret) {
+	return OAuthCreateHeader(url, method, body, _oAuthConsumerKey, _oAuthConsumerSecret, nil, nil, nil, YES, NO);
 }

@@ -20,13 +20,17 @@
 @synthesize consumerSecret = consumerSecret_;
 @synthesize requestKey = requestKey_;
 @synthesize requestSecret = requestSecret_;
+@synthesize pinCode = pinCode_;
+@synthesize accessKey = accessKey_;
+@synthesize accessSecret = accessSecret_;
+@synthesize urlLoader = urlLoader_;
 
 
 #pragma mark -
 #pragma mark Definitions
 
-#define CONSUMER_KEY @"4hYBQ1JJ7m05xC5wcKtA"
-#define CONSUMER_SECRET @"5QsyXcfJaE9B0KEe2QV9d7xjUT3NlbIcaXvuf9LIs0Y"
+#define CONSUMER_KEY @"IqDgaCswPLJL1CzUmJc6Ow"
+#define CONSUMER_SECRET @"Gls4JQhMshp1FuI4ExqSbsUELulGWCoHiXI0fZVc8"
 
 #define REQUEST_API @"https://api.twitter.com/oauth/request_token"
 #define ACCESS_TOKEN_API @"https://api.twitter.com/oauth/access_token"
@@ -42,7 +46,9 @@
 	NSError* error = nil;
 	NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:0 error:&error];
 	NSArray* matches = [regex matchesInString:rawStr options:NSMatchingCompleted range:NSMakeRange(0, rawStr.length)];
-	if (![NSArray isEmpty:matches]) return [rawStr stringByReplacingOccurrencesOfString:pattern withString:@""];
+	if (![NSArray isEmpty:matches])  {
+		return [regex stringByReplacingMatchesInString:rawStr options:NSMatchingCompleted range:NSMakeRange(0, rawStr.length) withTemplate:@""];
+	}
 	return nil;
 }
 
@@ -52,6 +58,22 @@
 		if ([NSString isEmpty:self.requestKey]) self.requestKey = [self createFixValue:rawKey remove:REGEX_TOKEN];
 		if ([NSString isEmpty:self.requestSecret]) self.requestSecret = [self createFixValue:rawKey remove:REGEX_SECRET];
 	}
+}
+
+- (void)createAccessKeys:(NSString*)rawStr {
+	NSArray* rawKeys = [rawStr componentsSeparatedByString:@"&"];
+	for (NSString* rawKey in rawKeys) {
+		if ([NSString isEmpty:self.accessKey]) self.accessKey = [self createFixValue:rawKey remove:REGEX_TOKEN];
+		if ([NSString isEmpty:self.accessSecret]) self.accessSecret = [self createFixValue:rawKey remove:REGEX_SECRET];
+	}
+}
+
+#define GET_METHOD @"GET"
+
+- (NSData*)createOAuthKeys:(NSURL*)url header:(NSString*)header {
+	NSData* body = [[NSString stringWithString:@""] dataUsingEncoding:NSUTF8StringEncoding];
+	NSString* method = GET_METHOD;
+	return [self.urlLoader request:url method:method header:header headerField:@"Authorization" body:body];
 }
 
 
@@ -66,16 +88,21 @@
 	return self;
 }
 
-#define GET_METHOD @"GET"
-
-- (void)createOAuthKeys {
+- (void)createOAuthRequestKeys {
 	NSURL* url = [NSURL URLWithString:REQUEST_API];
 	NSData* body = [[NSString stringWithString:@""] dataUsingEncoding:NSUTF8StringEncoding];
 	NSString* method = GET_METHOD;
-	NSString* header = OAuthorizationHeader(url, method, body, self.consumerKey, self.consumerSecret, self.requestKey, self.requestSecret, YES);
-	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
-	NSData* data = [urlLoader request:url method:method header:header headerField:@"Authorization" body:body];
+	NSData* data = [self createOAuthKeys:url header:OAuthRequestHeader(url, method, body, self.consumerKey, self.consumerSecret)];
 	[self createRequestKeys:[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]];
+}
+
+
+- (void)createOAuthAccessKeys {
+	NSURL* url = [NSURL URLWithString:ACCESS_TOKEN_API];
+	NSData* body = [[NSString stringWithString:@""] dataUsingEncoding:NSUTF8StringEncoding];
+	NSString* method = GET_METHOD;
+	NSData* data = [self createOAuthKeys:url header:OAuthAccessHeader(url, method, body, self.consumerKey, self.consumerSecret, self.requestKey, self.requestSecret, self.pinCode)];
+	[self createAccessKeys:[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]];
 }
 
 
@@ -88,6 +115,7 @@
 		self.consumerSecret = CONSUMER_SECRET;
 		self.requestKey = nil;
 		self.requestSecret = nil;
+		self.urlLoader = [[[URLLoader alloc] init] autorelease];
 	}
 	return self;
 }
@@ -99,6 +127,10 @@
 	self.consumerSecret = nil;
 	self.requestKey = nil;
 	self.requestSecret = nil;
+	self.pinCode = nil;
+	self.accessKey = nil;
+	self.accessSecret = nil;
+	self.urlLoader = nil;
 	[super dealloc];
 }
 
