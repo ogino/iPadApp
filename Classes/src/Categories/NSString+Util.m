@@ -9,11 +9,11 @@
 #import "NSString+Util.h"
 
 
-@implementation NSString (NSString_Util)
+@implementation NSString (Util)
 
 + (BOOL)isEmpty:(NSString*)string {
 	if (string == nil) return YES;
-	return (BOOL)([string length] == 0);
+	return (BOOL)(string.length == 0);
 }
 
 + (NSString*)encodeUTF8:(NSString*)source {

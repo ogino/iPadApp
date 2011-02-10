@@ -49,6 +49,19 @@
 	assertThat([NSNumber numberWithInt:[response length]], greaterThan([NSNumber numberWithInt:0u]));
 }
 
+- (void)testRequestWithBodyGET {
+	NSURL* url = [NSURL URLWithString:@"http://www.google.co.jp/search"];
+	NSString* jpGET = @"hl=ja&client=firefox-a&hs=cH8&rls=org.mozilla%3Aja-JP-mac%3Aunofficial&q=http+httpbody+setHTTPMethod+\"GET\"&aq=f&aqi=&aql=&oq=";
+	NSString* get = [NSString encodeUTF8:jpGET];
+	NSData* data = [urlLoader request:url header:nil headerField:nil get:get];
+	assertThat(data, notNilValue());
+	assertThat([NSNumber numberWithInt:[data length]], greaterThan([NSNumber numberWithInt:0u]));
+	NSString* response = [[[NSString alloc] initWithData:data encoding:NSShiftJISStringEncoding] autorelease];
+	assertThat(response, notNilValue());
+	assertThat([NSNumber numberWithInt:[response length]], greaterThan([NSNumber numberWithInt:0u]));
+	NSLog(@"response = %@", response);
+}
+
 - (void)tearDown {
 	[urlLoader release];
 }

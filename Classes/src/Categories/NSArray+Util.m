@@ -9,11 +9,11 @@
 #import "NSArray+Util.h"
 
 
-@implementation NSArray (NSArray_Util)
+@implementation NSArray (Util)
 
 + (BOOL)isEmpty:(NSArray*)array {
 	if (array == nil) return YES;
-	return (BOOL)([array count] == 0);
+	return (BOOL)(array.count == 0);
 }
 
 @end

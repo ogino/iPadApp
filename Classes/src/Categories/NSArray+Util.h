@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSArray (NSArray_Util)
+@interface NSArray (Util)
 
 + (BOOL)isEmpty:(NSArray*)array;
 

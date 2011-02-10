@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSString (NSString_Util)
+@interface NSString (Util)
 
 + (BOOL)isEmpty:(NSString*)string;
 
