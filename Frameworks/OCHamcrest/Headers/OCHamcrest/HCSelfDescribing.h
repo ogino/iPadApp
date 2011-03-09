@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCSelfDescribing.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -13,6 +13,8 @@
 
 /**
     The ability of an object to describe itself.
+
+    @ingroup core
  */
 @protocol HCSelfDescribing <NSObject>
 
@@ -22,8 +24,8 @@
     The description may be part of a description of a larger object of which this is just a
     component, so it should be worded appropriately.
     
-    \param description  The description to be built or appended to.
+    @param description  The description to be built or appended to.
  */
-- (void) describeTo:(id<HCDescription>)description;
+- (void)describeTo:(id<HCDescription>)description;
 
 @end

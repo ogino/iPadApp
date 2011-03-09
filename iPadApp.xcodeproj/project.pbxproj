@@ -6,6 +6,23 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		882344C513271438005ECBA8 /* AllTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 882344D213271452005ECBA8 /* Build configuration list for PBXAggregateTarget "AllTests" */;
+			buildPhases = (
+				882344C413271438005ECBA8 /* ShellScript */,
+			);
+			dependencies = (
+				882344C913271441005ECBA8 /* PBXTargetDependency */,
+				882344CB13271441005ECBA8 /* PBXTargetDependency */,
+				882344CD13271441005ECBA8 /* PBXTargetDependency */,
+			);
+			name = AllTests;
+			productName = AllTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -14,6 +31,10 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		8803442612713B4400C25398 /* NSArray+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8803442512713B4400C25398 /* NSArray+Util.m */; };
+		880AAF3B1309FE4000F6C4D7 /* Authorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 887ADDD612F9955A004BD2A1 /* Authorize.m */; };
+		880AAF461309FE5F00F6C4D7 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611951302BB8F00A6EAB3 /* NSData+Base64.m */; };
+		880AAF471309FE5F00F6C4D7 /* OAuth+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611971302BB8F00A6EAB3 /* OAuth+Additions.m */; };
+		880AAF481309FE5F00F6C4D7 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611991302BB8F00A6EAB3 /* OAuthCore.m */; };
 		8811D69F12791999008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
 		8811D6A0127919FC008D64E5 /* NSString+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 8811D69E12791999008D64E5 /* NSString+Util.m */; };
 		8811D6BB12791A47008D64E5 /* UIImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E633C12717EE7002C18DF /* UIImage+Util.m */; };
@@ -80,6 +101,30 @@
 		88DB50321276D2B3005F4E2A /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88DB50761276D452005F4E2A /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		882344C813271441005ECBA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8873F4A812FA3B2800BE1FA1 /* AuthorizeTest */;
+			remoteInfo = AuthorizeTest;
+		};
+		882344CA13271441005ECBA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8881065A127034D800F74216 /* TimeLineTest */;
+			remoteInfo = TimeLineTest;
+		};
+		882344CC13271441005ECBA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88810723127046EF00F74216 /* URLLoaderTest */;
+			remoteInfo = URLLoaderTest;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -647,9 +692,10 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* iPadApp */,
+				882344C513271438005ECBA8 /* AllTests */,
+				8873F4A812FA3B2800BE1FA1 /* AuthorizeTest */,
 				8881065A127034D800F74216 /* TimeLineTest */,
 				88810723127046EF00F74216 /* URLLoaderTest */,
-				8873F4A812FA3B2800BE1FA1 /* AuthorizeTest */,
 			);
 		};
 /* End PBXProject section */
@@ -697,6 +743,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		882344C413271438005ECBA8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here\nexit 0";
+		};
 		8873F4A712FA3B2800BE1FA1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -791,9 +850,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DB50761276D452005F4E2A /* AlertUtil.m in Sources */,
+				880AAF3B1309FE4000F6C4D7 /* Authorize.m in Sources */,
 				888106E812703ABE00F74216 /* NSObject+SBJSON.m in Sources */,
 				888106E912703ABE00F74216 /* NSString+SBJSON.m in Sources */,
 				8811D6A0127919FC008D64E5 /* NSString+Util.m in Sources */,
+				880AAF461309FE5F00F6C4D7 /* NSData+Base64.m in Sources */,
+				880AAF471309FE5F00F6C4D7 /* OAuth+Additions.m in Sources */,
+				880AAF481309FE5F00F6C4D7 /* OAuthCore.m in Sources */,
 				888106EA12703ABE00F74216 /* SBJsonBase.m in Sources */,
 				888106EB12703ABE00F74216 /* SBJsonParser.m in Sources */,
 				888106EC12703ABE00F74216 /* SBJsonWriter.m in Sources */,
@@ -819,6 +882,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		882344C913271441005ECBA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8873F4A812FA3B2800BE1FA1 /* AuthorizeTest */;
+			targetProxy = 882344C813271441005ECBA8 /* PBXContainerItemProxy */;
+		};
+		882344CB13271441005ECBA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8881065A127034D800F74216 /* TimeLineTest */;
+			targetProxy = 882344CA13271441005ECBA8 /* PBXContainerItemProxy */;
+		};
+		882344CD13271441005ECBA8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88810723127046EF00F74216 /* URLLoaderTest */;
+			targetProxy = 882344CC13271441005ECBA8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		887ADD4012F97AB6004BD2A1 /* Localizable.strings */ = {
@@ -878,6 +959,27 @@
 				);
 				PRODUCT_NAME = iPadApp;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		882344C613271438005ECBA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = AllTests;
+			};
+			name = Debug;
+		};
+		882344C713271438005ECBA8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = AllTests;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -1199,6 +1301,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		882344D213271452005ECBA8 /* Build configuration list for PBXAggregateTarget "AllTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				882344C613271438005ECBA8 /* Debug */,
+				882344C713271438005ECBA8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

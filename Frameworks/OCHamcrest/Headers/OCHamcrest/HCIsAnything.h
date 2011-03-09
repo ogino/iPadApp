@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsAnything.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,48 +10,63 @@
 
 
 /**
-    A matcher that always returns \c YES.
-    \ingroup core
+    A matcher that always returns @c YES.
+    @ingroup core_matchers
  */
 @interface HCIsAnything : HCBaseMatcher
 {
-    NSString* description;
+    NSString *description;
 }
 
-+ (HCIsAnything*) isAnything;
-+ (HCIsAnything*) isAnythingWithDescription:(NSString*)aDescription;
-- (id) init;
-- (id) initWithDescription:(NSString*)aDescription;
++ (id)isAnything;
++ (id)isAnythingWithDescription:(NSString *)aDescription;
+
+- (id)init;
+- (id)initWithDescription:(NSString *)aDescription;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
-    This matcher always evaluates to \c YES.
-    \see HCIsAnything
-    \ingroup core
+    This matcher always evaluates to @c YES.
+ 
+    @b Synonym: @ref anything
+    @see HCIsAnything
+    @ingroup core_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_anything();
 
 /**
-    Shorthand for \ref HC_anything, available if HC_SHORTHAND is defined.
+    This matcher always evaluates to @c YES.
+
+    Synonym for @ref HC_anything, available if @c HC_SHORTHAND is defined.
+    @see HCIsAnything
+    @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND
-    #define anything HC_anything
+    #define anything() HC_anything()
 #endif
 
 
 /**
-    This matcher always evaluates to <code>YES</code>.
-    \param aDescription  A meaningful string used when describing itself.
-    \see HCIsAnything
-    \ingroup core
+    This matcher always evaluates to @c YES.
+
+    @b Synonym: @ref anythingWithDescription
+    @param aDescription  A meaningful string used when describing itself.
+    @see HCIsAnything
+    @ingroup core_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_anythingWithDescription(NSString* aDescription);
+OBJC_EXPORT id<HCMatcher> HC_anythingWithDescription(NSString *aDescription);
 
 /**
-    Shorthand for \ref HC_anythingWithDescription, available if HC_SHORTHAND is defined.
-    \ingroup core
+    anythingWithDescription(description) -
+    This matcher always evaluates to @c YES.
+
+    Synonym for @ref HC_anythingWithDescription, available if @c HC_SHORTHAND is defined.
+    @param aDescription  A meaningful string used when describing itself.
+    @see HCIsAnything
+    @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND
     #define anythingWithDescription HC_anythingWithDescription

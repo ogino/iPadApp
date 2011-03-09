@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCAllOf.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -13,32 +13,40 @@
     Calculates the logical conjunction of multiple matchers.
 
     Evaluation is shortcut, so subsequent matchers are not called if an earlier matcher returns
-    \c NO.
+    @c NO.
 
-    \ingroup core
+    @ingroup core_matchers
  */
 @interface HCAllOf : HCBaseMatcher
 {
-    NSArray* matchers;
+    NSArray *matchers;
 }
 
-+ (HCAllOf*) allOf:(NSArray*)theMatchers;
-- (id) initWithMatchers:(NSArray*)theMatchers;
++ (id)allOf:(NSArray *)theMatchers;
+- (id)initWithMatchers:(NSArray *)theMatchers;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
-    Evaluates to \c YES only if \b all of the passed in matchers evaluate to \c YES.
-    \param matcher  Comma-separated list of matchers ending with \c nil.
-    \see HCAllOf
-    \ingroup core
+    Evaluates to @c YES only if @em all of the given matchers evaluate to @c YES.
+ 
+    @b Synonym: @ref allOf
+    @param matcher1  Comma-separated list of matchers ending with @c nil.
+    @see HCAllOf
+    @ingroup core_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_allOf(id<HCMatcher> matcher, ...);
+OBJC_EXPORT id<HCMatcher> HC_allOf(id<HCMatcher> matcher1, ...);
 
 /**
-    Shorthand for \ref HC_allOf, available if HC_SHORTHAND is defined.
-    \ingroup core
+    allOf(matcher1, ...) -
+    Evaluates to @c YES only if @em all of the given matchers evaluate to @c YES.
+
+    Synonym for @ref HC_allOf, available if @c HC_SHORTHAND is defined.
+    @param matcher1  Comma-separated list of matchers ending with @c nil.
+    @see HCAllOf
+    @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND
     #define allOf HC_allOf

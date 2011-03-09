@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsCloseTo.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,32 +10,39 @@
 
 
 /**
-    Is the value a number equal to a value within some range of acceptable error?
-    \ingroup number
+    Is the argument a number close to a value, within some delta?
+    @ingroup number_matchers
  */
 @interface HCIsCloseTo : HCBaseMatcher
 {
     double value;
-    double error;
+    double delta;
 }
 
-+ (HCIsCloseTo*) isCloseTo:(double)aValue within:(double)anError;
-- (id) initWithValue:(double)aValue error:(double)anError;
++ (id)isCloseTo:(double)aValue within:(double)aDelta;
+- (id)initWithValue:(double)aValue delta:(double)aDelta;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
-    Is the value a number equal to a value within some range of acceptable error?
-    \see HCIsCloseTo
-    \ingroup number
+    Is the argument a number close to a value, within some delta?
+ 
+    @b Synonym: @ref closeTo
+    @see HCIsCloseTo
+    @ingroup number_matchers
 */
-OBJC_EXPORT id<HCMatcher> HC_closeTo(double aValue, double anError);
+OBJC_EXPORT id<HCMatcher> HC_closeTo(double aValue, double aDelta);
 
 /**
-    Shorthand for \ref HC_closeTo, available if HC_SHORTHAND is defined.
-    \ingroup number
-*/
+    closeTo(value, delta) -
+    Is the argument a number close to a value, within some delta?
+
+    Synonym for @ref HC_closeTo, available if @c HC_SHORTHAND is defined.
+    @see HCIsCloseTo
+    @ingroup number_matchers
+ */
 #ifdef HC_SHORTHAND
     #define closeTo HC_closeTo
 #endif

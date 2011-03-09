@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCWrapInMatcher.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -12,7 +12,7 @@
 
 /**
     Wraps argument in a matcher, if necessary.
-    \return The argument as-if if it is already a matcher, otherwise wrapped an \ref equalTo matcher.
-    \ingroup helpers
+    @return The argument as-if if it is already a matcher, otherwise wrapped in an @ref equalTo matcher.
+    @ingroup helpers
  */
 OBJC_EXPORT id<HCMatcher> HCWrapInMatcher(id matcherOrValue);

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "Authorize.h"
 #import "Categories.h"
 #import "JSON.h"
 #import "URLLoader.h"
@@ -16,26 +17,20 @@
 @interface TimeLine : NSObject {
 @private
 	NSString* url_;
-	NSString* userId_;
-	NSString* password_;
-	NSDictionary* gets_;
-	NSDictionary* posts_;
+	Authorize* authorize_;
 	NSDictionary* tweets_;
 }
 
 @property (nonatomic, copy) NSString* url;
-@property (nonatomic, copy) NSString* userId;
-@property (nonatomic, copy) NSString* password;
-@property (nonatomic, retain) NSDictionary* gets;
-@property (nonatomic, retain) NSDictionary* posts;
+@property (nonatomic, retain) Authorize* authorize;
 @property (nonatomic, retain) NSDictionary* tweets;
 
-- (id) init:(NSString*) url userId:(NSString*) userId password:(NSString*) password;
+- (id)init:(NSString*)url userId:(NSString*)userId password:(NSString*)password;
 
-- (id) createData;
+- (id)createData;
 
-- (id) createDataWithGet:(NSDictionary*) gets;
+- (id)createDataWithGet:(NSDictionary*)getDic;
 
-- (id) createDataWithPost:(NSDictionary*) posts;
+- (id)createDataWithPost:(NSDictionary*)postDic;
 
 @end

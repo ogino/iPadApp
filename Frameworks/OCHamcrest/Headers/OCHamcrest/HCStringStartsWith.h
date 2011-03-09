@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCStringStartsWith.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,27 +11,32 @@
 
 /**
     Tests if the argument is a string that starts with a substring.
-    \ingroup text
+    @ingroup text_matchers
  */
 @interface HCStringStartsWith : HCSubstringMatcher
-{
-}
 
-+ (HCStringStartsWith*) stringStartsWith:(NSString*)aSubstring;
++ (id)stringStartsWith:(NSString *)aSubstring;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Tests if the argument is a string that starts with a substring.
-    \see HCStringStartsWith
-    \ingroup text
+    
+    @b Synonym: @ref startsWith
+    @see HCStringStartsWith
+    @ingroup text_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_startsWith(NSString* aSubstring);
+OBJC_EXPORT id<HCMatcher> HC_startsWith(NSString *aSubstring);
 
 /**
-    Shorthand for \ref HC_startsWith, available if HC_SHORTHAND is defined.
-    \ingroup text
+    startsWith(substring) -
+    Tests if the argument is a string that starts with a substring.
+
+    Synonym for @ref HC_startsWith, available if @c HC_SHORTHAND is defined.
+    @see HCStringStartsWith
+    @ingroup text_matchers
  */
 #ifdef HC_SHORTHAND
     #define startsWith HC_startsWith

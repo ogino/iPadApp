@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCBoxNumber.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,76 +11,76 @@ namespace hamcrest {
 
 /**
     Boxes scalar value in NSNumber, specialized per type.
-    \ingroup number
+    @ingroup number_matchers
  */
 template <typename T>
 inline
-NSNumber* boxNumber(T value)
+NSNumber *boxNumber(T value)
     { return nil; }
 
 template <>
 inline
-NSNumber* boxNumber(BOOL value)
+NSNumber *boxNumber(BOOL value)
     { return [NSNumber numberWithBool:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(char value)
+NSNumber *boxNumber(char value)
     { return [NSNumber numberWithChar:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(double value)
+NSNumber *boxNumber(double value)
     { return [NSNumber numberWithDouble:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(float value)
+NSNumber *boxNumber(float value)
     { return [NSNumber numberWithFloat:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(int value)
+NSNumber *boxNumber(int value)
     { return [NSNumber numberWithInt:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(long value)
+NSNumber *boxNumber(long value)
     { return [NSNumber numberWithLong:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(long long value)
+NSNumber *boxNumber(long long value)
     { return [NSNumber numberWithLongLong:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(short value)
+NSNumber *boxNumber(short value)
     { return [NSNumber numberWithShort:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(unsigned char value)
+NSNumber *boxNumber(unsigned char value)
     { return [NSNumber numberWithUnsignedChar:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(unsigned int value)
+NSNumber *boxNumber(unsigned int value)
     { return [NSNumber numberWithUnsignedInt:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(unsigned long value)
+NSNumber *boxNumber(unsigned long value)
     { return [NSNumber numberWithUnsignedLong:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(unsigned long long value)
+NSNumber *boxNumber(unsigned long long value)
     { return [NSNumber numberWithUnsignedLongLong:value]; }
 
 template <>
 inline
-NSNumber* boxNumber(unsigned short value)
+NSNumber *boxNumber(unsigned short value)
     { return [NSNumber numberWithUnsignedShort:value]; }
 
 }   // namespace hamcrest

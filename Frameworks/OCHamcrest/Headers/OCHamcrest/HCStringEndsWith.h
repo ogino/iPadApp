@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCStringEndsWith.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,27 +11,32 @@
 
 /**
     Tests if the argument is a string that ends with a substring.
-    \ingroup text
+    @ingroup text_matchers
  */
 @interface HCStringEndsWith : HCSubstringMatcher
-{
-}
 
-+ (HCStringEndsWith*) stringEndsWith:(NSString*)aSubstring;
++ (id)stringEndsWith:(NSString *)aSubstring;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Tests if the argument is a string that ends with a substring.
-    \see HCStringEndsWith
-    \ingroup text
+    
+    @b Synonym: @ref endsWith
+    @see HCStringEndsWith
+    @ingroup text_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_endsWith(NSString* aSubstring);
+OBJC_EXPORT id<HCMatcher> HC_endsWith(NSString *aSubstring);
 
 /**
-    Shorthand for \ref HC_endsWith, available if HC_SHORTHAND is defined.
-    \ingroup text
+    endsWith(substring) -
+    Tests if the argument is a string that ends with a substring.
+
+    Synonym for @ref HC_endsWith, available if @c HC_SHORTHAND is defined.
+    @see HCStringEndsWith
+    @ingroup text_matchers
  */
 #ifdef HC_SHORTHAND
     #define endsWith HC_endsWith

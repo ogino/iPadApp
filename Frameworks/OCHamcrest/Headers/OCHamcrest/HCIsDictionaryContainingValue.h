@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContainingValue.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,30 +11,38 @@
 
 /**
     Matches dictionaries containing a value satisfying a given matcher.
-    \ingroup collection
+    @ingroup collection_matchers
  */
 @interface HCIsDictionaryContainingValue : HCBaseMatcher
 {
     id<HCMatcher> valueMatcher;
 }
 
-+ (HCIsDictionaryContainingValue*) isDictionaryContainingValue:(id<HCMatcher>)theValueMatcher;
-- (id) initWithValueMatcher:(id<HCMatcher>)theValueMatcher;
++ (id)isDictionaryContainingValue:(id<HCMatcher>)theValueMatcher;
+- (id)initWithValueMatcher:(id<HCMatcher>)theValueMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches dictionaries containing a value satisfying a given matcher.
-    \param matcherOrValue  A matcher, or a value for \ref equalTo matching.
-    \see HCIsDictionaryContainingValue
-    \ingroup collection
+ 
+    @b Synonym: @ref hasValue
+    @param matcherOrValue  A matcher, or a value for @ref equalTo matching.
+    @see HCIsDictionaryContainingValue
+    @ingroup collection_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_hasValue(id matcherOrValue);
 
 /**
-    Shorthand for \ref HC_hasValue, available if HC_SHORTHAND is defined.
-    \ingroup collection
+    hasValue(matcherOrValue) -
+    Matches dictionaries containing a value satisfying a given matcher.
+
+    Synonym for @ref HC_hasValue, available if @c HC_SHORTHAND is defined.
+    @param matcherOrValue  A matcher, or a value for @ref equalTo matching.
+    @see HCIsDictionaryContainingValue
+    @ingroup collection_matchers
  */
 #ifdef HC_SHORTHAND
     #define hasValue HC_hasValue

@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsNot.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,39 +11,54 @@
 
 /**
     Calculates the logical negation of a matcher.
-    \ingroup core
+    @ingroup core_matchers
 */
 @interface HCIsNot : HCBaseMatcher
 {
     id<HCMatcher> matcher;
 }
 
-+ (HCIsNot*) isNot:(id<HCMatcher>)aMatcher;
-- (id) initNot:(id<HCMatcher>)aMatcher;
++ (id)isNot:(id<HCMatcher>)aMatcher;
+- (id)initNot:(id<HCMatcher>)aMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Inverts the rule, or provides a shortcut to the frequently used isNot(equalTo(x)).
 
     For example:
-\code
+@code
 assertThat(cheese, isNot(equalTo(smelly)))
-\endcode
+@endcode
     vs.
-\code
+@code
 assertThat(cheese, isNot(smelly))
-\endcode
+@endcode
 
-    \see HCIsNot
-    \ingroup core
+    @b Synonym: @ref isNot
+    @see HCIsNot
+    @ingroup core_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_isNot(id matcherOrValue);
 
 /**
-    Shorthand for \ref HC_isNot, available if HC_SHORTHAND is defined.
-    \ingroup core
+    isNot(matcherOrValue) -
+    Inverts the rule, or provides a shortcut to the frequently used isNot(equalTo(x)).
+
+    For example:
+@code
+assertThat(cheese, isNot(equalTo(smelly)))
+@endcode
+    vs.
+@code
+assertThat(cheese, isNot(smelly))
+@endcode
+
+    Synonym for @ref HC_isNot, available if @c HC_SHORTHAND is defined.
+    @see HCIsNot
+    @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND
     #define isNot HC_isNot

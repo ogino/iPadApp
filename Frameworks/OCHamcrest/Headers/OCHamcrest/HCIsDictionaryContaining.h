@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContaining.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,7 +11,7 @@
 
 /**
     Matches dictionaries containing a key-value pair satisfying a given pair of matchers.
-    \ingroup collection
+    @ingroup collection_matchers
  */
 @interface HCIsDictionaryContaining : HCBaseMatcher
 {
@@ -19,26 +19,36 @@
     id<HCMatcher> valueMatcher;
 }
 
-+ (HCIsDictionaryContaining*) isDictionaryContainingKey:(id<HCMatcher>)aKeyMatcher
-                                                  value:(id<HCMatcher>)aValueMatcher;
-- (id) initWithKeyMatcher:(id<HCMatcher>)aKeyMatcher
-             valueMatcher:(id<HCMatcher>)aValueMatcher;
++ (id)isDictionaryContainingKey:(id<HCMatcher>)aKeyMatcher
+                          value:(id<HCMatcher>)aValueMatcher;
+
+- (id)initWithKeyMatcher:(id<HCMatcher>)aKeyMatcher
+            valueMatcher:(id<HCMatcher>)aValueMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches dictionaries containing a key-value pair satisfying a given pair of matchers.
-    \param keyMatcher    A matcher - or a value for \ref equalTo matching - for the key.
-    \param valueMatcher  A matcher - or a value for \ref equalTo matching - for the value.
-    \see HCIsDictionaryContaining
-    \ingroup collection
+ 
+    @b Synonym: @ref hasEntry
+    @param keyMatcher    A matcher - or a value for @ref equalTo matching - for the key.
+    @param valueMatcher  A matcher - or a value for @ref equalTo matching - for the value.
+    @see HCIsDictionaryContaining
+    @ingroup collection_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_hasEntry(id keyMatcher, id valueMatcher);
 
 /**
-    Shorthand for \ref HC_hasEntry, available if HC_SHORTHAND is defined.
-    \ingroup collection
+    hasEntry(keyMatcher, valueMatcher) -
+    Matches dictionaries containing a key-value pair satisfying a given pair of matchers.
+
+    Synonym for @ref HC_hasEntry, available if @c HC_SHORTHAND is defined.
+    @param keyMatcher    A matcher - or a value for @ref equalTo matching - for the key.
+    @param valueMatcher  A matcher - or a value for @ref equalTo matching - for the value.
+    @see HCIsDictionaryContaining
+    @ingroup collection_matchers
  */
 #ifdef HC_SHORTHAND
     #define hasEntry HC_hasEntry

@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCOrderingComparison.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -14,27 +14,37 @@
     id expected;
     NSComparisonResult minCompare;
     NSComparisonResult maxCompare;
+    NSString *comparisonDescription;
 }
 
-+ (HCOrderingComparison*) compare:(id)expectedValue
-                       minCompare:(NSComparisonResult)min
-                       maxCompare:(NSComparisonResult)max;
-- (id) initComparing:(id)expectedValue
-          minCompare:(NSComparisonResult)min
-          maxCompare:(NSComparisonResult)max;
++ (id)compare:(id)expectedValue
+   minCompare:(NSComparisonResult)min
+   maxCompare:(NSComparisonResult)max
+   comparisonDescription:(NSString *)comparisonDescription;
+
+- (id)initComparing:(id)expectedValue
+         minCompare:(NSComparisonResult)min
+         maxCompare:(NSComparisonResult)max
+         comparisonDescription:(NSString *)comparisonDescription;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Is value > expected?
-    \ingroup number
+ 
+    @b Synonym: @ref greaterThan
+    @ingroup number_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_greaterThan(id expected);
 
 /**
-    Shorthand for \ref HC_greaterThan, available if HC_SHORTHAND is defined.
-    \ingroup number
+    greaterThan(expected) -
+    Is value > expected?
+
+    Synonym for @ref HC_greaterThan, available if @c HC_SHORTHAND is defined.
+    @ingroup number_matchers
  */
 #ifdef HC_SHORTHAND
     #define greaterThan HC_greaterThan
@@ -43,13 +53,18 @@ OBJC_EXPORT id<HCMatcher> HC_greaterThan(id expected);
 
 /**
     Is value >= expected?
-    \ingroup number
+ 
+    @b Synonym: @ref greaterThanOrEqualTo
+    @ingroup number_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_greaterThanOrEqualTo(id expected);
 
 /**
-    Shorthand for \ref HC_greaterThan, available if HC_SHORTHAND is defined.
-    \ingroup number
+    greaterThanOrEqualTo(expected) -
+    Is value >= expected?
+
+    Synonym for @ref HC_greaterThan, available if @c HC_SHORTHAND is defined.
+    @ingroup number_matchers
  */
 #ifdef HC_SHORTHAND
     #define greaterThanOrEqualTo HC_greaterThanOrEqualTo
@@ -58,13 +73,18 @@ OBJC_EXPORT id<HCMatcher> HC_greaterThanOrEqualTo(id expected);
 
 /**
     Is value < expected?
-    \ingroup number
+ 
+    @b Synonym: @ref lessThan
+    @ingroup number_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_lessThan(id expected);
 
 /**
-    Shorthand for \ref HC_greaterThan, available if HC_SHORTHAND is defined.
-    \ingroup number
+    lessThan(expected) -
+    Is value < expected?
+
+    Synonym for @ref HC_greaterThan, available if @c HC_SHORTHAND is defined.
+    @ingroup number_matchers
  */
 #ifdef HC_SHORTHAND
     #define lessThan HC_lessThan
@@ -73,13 +93,18 @@ OBJC_EXPORT id<HCMatcher> HC_lessThan(id expected);
 
 /**
     Is value <= expected?
-    \ingroup number
+ 
+    @b Synonym: @ref lessThanOrEqualTo
+    @ingroup number_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_lessThanOrEqualTo(id expected);
 
 /**
-    Shorthand for \ref HC_lessThanOrEqualTo, available if HC_SHORTHAND is defined.
-    \ingroup number
+    lessThanOrEqualTo(expected) -
+    Is value <= expected?
+
+    Synonym for @ref HC_lessThanOrEqualTo, available if @c HC_SHORTHAND is defined.
+    @ingroup number_matchers
  */
 #ifdef HC_SHORTHAND
     #define lessThanOrEqualTo HC_lessThanOrEqualTo

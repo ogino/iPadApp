@@ -7,22 +7,35 @@
 //
 
 #import "TimeLine.h"
+#import "NSString+Util.h"
 
 
 @implementation TimeLine
 
 @synthesize url = url_;
-@synthesize userId = userId_;
-@synthesize password = password_;
-@synthesize gets = gets_;
-@synthesize posts = posts_;
+@synthesize authorize = authorize_;
 @synthesize tweets = tweets_;
+
+
+#pragma mark -
+#pragma mark Privte Methods
+
+- (NSString*)createBodyData:(NSDictionary*)dictionary {
+	NSMutableString* getStr = [NSMutableString string];
+	for (NSString* key in [dictionary allKeys]) {
+		if ([NSString isEmpty:getStr]) [getStr stringByAppendingFormat:@"%@=%@", key, [dictionary objectForKey:key]];
+		else [getStr stringByAppendingFormat:@"&%@=%@", key, [dictionary objectForKey:key]];
+	}
+	return getStr;
+}
+
+#pragma mark -
+#pragma mark Public Methods
 
 - (id)init:(NSString*)url userId:(NSString*)userId password:(NSString*)password {
 	if ([super init] != nil) {
 		self.url = url;
-		self.userId = userId;
-		self.password = password;
+		self.authorize = [[[Authorize alloc] initWithUserInfo:userId password:password] autorelease];
 	}
 	return self;
 }
@@ -35,19 +48,22 @@
 	return ([NSString isEmpty:json]) ? nil : [json JSONValue];
 }
 
-- (id)createDataWithGet:(NSDictionary*) gets {
-	assert(self.gets != nil);
-	return nil;
+- (id)createDataWithGet:(NSDictionary*)getDic {
+	assert(self.url != nil);
+	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
+	NSData* data = [urlLoader request:[NSURL URLWithString:self.url] get:[self createBodyData:getDic] timeoutInterval:60];
+	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+	return ([NSString isEmpty:json]) ? nil : [json JSONValue];
 }
 
-- (id)createDataWithPost:(NSDictionary*) osts {
-	assert(self.posts != nil);
+- (id)createDataWithPost:(NSDictionary*)postDic {
+	assert(self.url != nil);
 	return nil;
 }
 
 - (void)dealloc {
-	self.gets = nil;
-	self.posts = nil;
+	self.url = nil;
+	self.authorize = nil;
 	self.tweets = nil;
 	[super dealloc];
 }

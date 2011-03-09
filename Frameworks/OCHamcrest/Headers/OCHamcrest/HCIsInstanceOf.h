@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsInstanceOf.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,29 +11,36 @@
 
 /**
     Tests whether the value is an instance of a class (including subclasses).
-    \ingroup core
+    @ingroup core_matchers
  */
 @interface HCIsInstanceOf : HCBaseMatcher
 {
     Class theClass;
 }
 
-+ (HCIsInstanceOf*) isInstanceOf:(Class)type;
-- (id) initWithType:(Class)type;
++ (id)isInstanceOf:(Class)type;
+- (id)initWithType:(Class)type;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Is the value an instance of a particular type?
-    \see HCIsInstanceOf
-    \ingroup core
+ 
+    @b Synonym: @ref instanceOf
+    @see HCIsInstanceOf
+    @ingroup core_matchers
  */
 OBJC_EXPORT id<HCMatcher> HC_instanceOf(Class type);
 
 /**
-    Shorthand for \ref HC_instanceOf, available if HC_SHORTHAND is defined.
-    \ingroup core
+    instanceOf(type) -
+    Is the value an instance of a particular type?
+
+    Synonym for @ref HC_instanceOf, available if @c HC_SHORTHAND is defined.
+    @see HCIsInstanceOf
+    @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND
     #define instanceOf HC_instanceOf

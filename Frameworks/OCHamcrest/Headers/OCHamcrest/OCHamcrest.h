@@ -1,20 +1,22 @@
 //
 //  OCHamcrest - OCHamcrest.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
 
 /**
-	\defgroup integration Unit Test Integration
+	@defgroup library Matcher Library
+
+	Library of Matcher implementations
  */
-#import <OCHamcrest/HCMatcherAssert.h>
-#import <OCHamcrest/HCNumberAssert.h>
 
 /**
-	\defgroup core Core Matchers
+	@defgroup core_matchers Core Matchers
  
-	Fundamental matchers of objects and values, and composite matchers.
+	Fundamental matchers of objects and values, and composite matchers
+ 
+	@ingroup library
  */
 #import <OCHamcrest/HCAllOf.h>
 #import <OCHamcrest/HCAnyOf.h>
@@ -28,51 +30,58 @@
 #import <OCHamcrest/HCIsSame.h>
 
 /**
-	\defgroup library Matcher Library
- 
-	Library of Matcher implementations
- */
-
-/**
-	\defgroup collection Collection Matchers
+	@defgroup collection_matchers Collection Matchers
     
-    Matchers of collections.
+    Matchers of collections
  
-	\ingroup library
+	@ingroup library
  */
+#import <OCHamcrest/HCHasCount.h>
 #import <OCHamcrest/HCIsCollectionContaining.h>
+#import <OCHamcrest/HCIsCollectionContainingInAnyOrder.h>
+#import <OCHamcrest/HCIsCollectionContainingInOrder.h>
 #import <OCHamcrest/HCIsCollectionOnlyContaining.h>
 #import <OCHamcrest/HCIsDictionaryContaining.h>
+#import <OCHamcrest/HCIsDictionaryContainingEntries.h>
 #import <OCHamcrest/HCIsDictionaryContainingKey.h>
 #import <OCHamcrest/HCIsDictionaryContainingValue.h>
+#import <OCHamcrest/HCIsEmptyCollection.h>
 #import <OCHamcrest/HCIsIn.h>
 
 /**
-	\defgroup number Number Matchers
+	@defgroup number_matchers Number Matchers
     
-    Matchers that perform numeric comparisons.
+    Matchers that perform numeric comparisons
  
-	\ingroup library
+	@ingroup library
  */
 #import <OCHamcrest/HCIsCloseTo.h>
-#import <OCHamcrest/HCIsEqualToNumber.h>
 #import <OCHamcrest/HCOrderingComparison.h>
 
 /**
-	\defgroup object Object Matchers
+	@defgroup primitive_number_matchers Primitive Number Matchers
+
+	Matchers for testing equality against primitive numeric types
+
+	@ingroup number_matchers
+ */
+#import <OCHamcrest/HCIsEqualToNumber.h>
+
+/**
+	@defgroup object_matchers Object Matchers
     
-    Matchers that inspect objects.
+    Matchers that inspect objects
  
-	\ingroup library
+	@ingroup library
  */
 #import <OCHamcrest/HCHasDescription.h>
 
 /**
-	\defgroup text Text Matchers
+	@defgroup text_matchers Text Matchers
     
-    Matchers that perform text comparisons.
+    Matchers that perform text comparisons
  
-	\ingroup library
+	@ingroup library
  */
 #import <OCHamcrest/HCIsEqualIgnoringCase.h>
 #import <OCHamcrest/HCIsEqualIgnoringWhiteSpace.h>
@@ -81,7 +90,27 @@
 #import <OCHamcrest/HCStringStartsWith.h>
 
 /**
-	\defgroup helpers Helpers
+	@defgroup integration Unit Test Integration
+ */
+#import <OCHamcrest/HCAssertThat.h>
+
+/**
+	@defgroup integration_numeric Unit Tests of Primitive Numbers
+
+	Unit test integration for primitive numbers
+
+	@ingroup integration
+ */
+#import <OCHamcrest/HCNumberAssert.h>
+
+/**
+	@defgroup core Core API
+ */
+
+/**
+	@defgroup helpers Helpers
  
 	Utilities for writing Matchers
+ 
+	@ingroup core
  */

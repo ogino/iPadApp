@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCBaseDescription.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -12,8 +12,10 @@
 
 /**
     Base class for all HCDescription implementations.
+ 
+    @ingroup core
  */
-@interface HCBaseDescription : NSObject<HCDescription>
+@interface HCBaseDescription : NSObject <HCDescription>
 @end
 
 
@@ -23,8 +25,8 @@
 @interface HCBaseDescription (SubclassMustImplement)
 
 /**
-    Append the string \a str to the description.
+    Append the string @a str to the description.
  */
-- (void) append:(NSString*)str;
+- (void)append:(NSString *)str;
 
 @end

@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCRequireNonNilString.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,7 +10,8 @@
 
 
 /**
-    Throws an NSException if \a string is nil.
-    \ingroup helpers
+    Throws an NSException if @a string is @c nil.
+    @b Deprecated: Use @ref HCRequireNonNilObject instead.
+    @ingroup helpers
 */
-OBJC_EXPORT void HCRequireNonNilString(NSString* string);
+OBJC_EXPORT void HCRequireNonNilString(NSString *string)    __attribute__((deprecated));
