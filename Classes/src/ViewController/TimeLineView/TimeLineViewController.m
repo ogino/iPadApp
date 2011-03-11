@@ -33,6 +33,18 @@
 	[self.tableView addSubview:self.trigger];
 }
 
+- (void)createTableHeader {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	CGRect rect = self.tableView.bounds;
+	rect.origin.y -= 80;
+	rect.size.height = 80;
+	HeaderTrgger* tableHeader = [[HeaderTrgger alloc] initWithFrame:rect];
+	[tableHeader labelText:NSLocalizedString(@"loading", @"")];
+	self.tableView.tableHeaderView = tableHeader;
+	[self.trigger visible:NO];
+	[pool release];
+}
+
 #define ADJUST_SIZE 80
 
 - (UIImage*)createImage:(NSString*)urlStr {
@@ -40,6 +52,7 @@
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
 	NSData* data = [urlLoader request:url];
 	UIImage* image = [UIImage imageWithData:data];
+	if (!image) image = [UIImage imageNamed:@"noimage"];
 	return [image shrinkImage:CGRectMake(0, 0, ADJUST_SIZE, ADJUST_SIZE)];
 }
 
@@ -53,13 +66,16 @@
 }
 
 - (void)refreshTable {
-	[self.trigger restoreText];
+	[tweetBuff addObjectsFromArray:self.tweets];
 	self.tweets = tweetBuff;
-	tweetBuff = nil;
 	[self createUserImage];
-	self.tableView.scrollEnabled = YES;
 	[self.tableView reloadData];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	tweetBuff = nil;
+	self.tableView.tableHeaderView = nil;
+	[self.trigger restoreText];
+	[self.trigger visible:YES];
+	self.loaded = YES;
 }
 
 - (void)requestTimeLine {
@@ -67,8 +83,6 @@
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	tweetBuff = (NSMutableArray*)[self.timeLine createData];
 	[tweetBuff retain];
-	[tweetBuff addObjectsFromArray:self.tweets];
-	self.loaded = YES;
 	[[NSNotificationCenter defaultCenter] postNotificationName:TIMELINE_NOFIFY object:nil];
 	[pool release];
 }
@@ -136,9 +150,13 @@
     return YES;
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	[self.trigger removeFromSuperview];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[self createTrigerHeader];
+	if (self.loaded) [self.tableView reloadData];
 }
 
 #pragma mark -
@@ -167,7 +185,7 @@
 		cell.detailTextLabel.numberOfLines = 0;
 		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
 		NSDictionary* user = [tweet objectForKey:@"user"];
-		cell.imageView.image = (self.images != nil && [self.images count] >= indexPath.row) ? [self.images objectAtIndex:indexPath.row] : nil;
+		cell.imageView.image = (self.images != nil && [self.images count] > indexPath.row) ? [self.images objectAtIndex:indexPath.row] : nil;
 		cell.textLabel.text = (NSString*)[user objectForKey:@"name"];
 		cell.textLabel.numberOfLines = 0;
 		cell.textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
@@ -214,22 +232,25 @@
 
 #define TRIGGER_TOGGLE -(self.tableView.frame.size.height / 6)
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView*)scrollView {
 	CGRect rect = self.tableView.bounds;
 	if (rect.origin.y < TRIGGER_TOGGLE && self.loaded) {
 		triggered = YES;
-		[self.trigger setText:NSLocalizedString(@"loading", @"")];
-	} else if (self.loaded) {
+		[self.trigger labelText:NSLocalizedString(@"loading", @"")];
+	} else if (self.loaded && triggered) {
 		triggered = NO;
 		[self.trigger restoreText];
 	}
 
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+- (void)scrollViewDidEndDragging:(UIScrollView*)scrollView willDecelerate:(BOOL)decelerate {
 	if (triggered) {
+		triggered = NO;
 		self.loaded = NO;
+		[scrollView scrollsToTop];
 		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
+		[self performSelectorInBackground:@selector(createTableHeader) withObject:nil];
 	}
 }
 

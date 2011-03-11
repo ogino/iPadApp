@@ -54,23 +54,21 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code.
-}
-*/
-
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)setText:(NSString*)text {
+- (void)labelText:(NSString*)text {
 	self.label.text = text;
 }
 
 - (void)restoreText {
 	self.label.text = BEFORE_LOAD;
+}
+
+- (void)visible:(BOOL)visible {
+	self.label.hidden = !visible;
+	if (visible) [self.indicator startAnimating];
+	else [self.indicator stopAnimating];
 }
 
 - (void)dealloc {
