@@ -18,6 +18,7 @@
 @property (nonatomic, retain) UILabel* label;
 @property (nonatomic, retain) UIActivityIndicatorView* indicator;
 
+- (id)initWithFrame:(CGRect)frame text:(NSString*)text;
 - (void)labelText:(NSString*)text;
 - (void)restoreText;
 - (void)visible:(BOOL)visible;

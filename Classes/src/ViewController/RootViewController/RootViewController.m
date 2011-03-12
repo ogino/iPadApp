@@ -23,7 +23,7 @@
 
 - (void)proceedMainView {
 	[self.view removeFromSuperview];
-	UIWindow* window = [(AppDelegate*)[[UIApplication sharedApplication] delegate] window];
+	UIWindow* window = [[UIApplication sharedApplication] keyWindow];
 	[window addSubview:self.tabBarController.view];
 }
 
@@ -86,6 +86,7 @@
 }
 
 - (void)dealloc {
+	self.view = nil;
 	self.tabBarController = nil;
 	[super dealloc];
 }

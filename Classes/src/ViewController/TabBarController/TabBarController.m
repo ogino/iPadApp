@@ -48,8 +48,8 @@ static NSArray* icons;
 		titles = [NSArray arrayWithObjects:PUBLIC_TIMELINE_TITLE, nil];
 		urls = [NSArray arrayWithObjects:PUBLIC_TIMELINE_URL, nil];
 		icons = [NSArray arrayWithObjects:PUBLIC_TIMELINE_ICON, nil];
-		self.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
 		self.viewControllers = [self createViewControllers];
+		self.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
 	}
 	return self;
 }

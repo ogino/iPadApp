@@ -7,3 +7,4 @@
  */
 refresh = "Faites descendre l'écran et libérez. Régénérez bientôt!";
 loading = "Remplacez la ligne de temps.";
+send = "Envoyez";

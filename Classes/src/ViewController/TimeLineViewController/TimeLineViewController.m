@@ -7,11 +7,13 @@
 //
 
 #import "TimeLineViewController.h"
+#import "TweetViewController.h"
 
 
 @implementation TimeLineViewController
 
 @synthesize loaded = loaded_;
+@synthesize triggered = triggered_;
 @synthesize timeLine = timeLine_;
 @synthesize url = url_;
 @synthesize userId = userId_;
@@ -19,6 +21,7 @@
 @synthesize tweets = tweets_;
 @synthesize trigger = trigger_;
 @synthesize images = images_;
+@synthesize popOverController = popOverController_;
 
 #pragma mark -
 #pragma mark Private Methods
@@ -29,19 +32,21 @@
 	CGRect rect = self.tableView.bounds;
 	rect.origin.y -= HEADER_SIZE;
 	rect.size.height = HEADER_SIZE;
-	self.trigger = [[HeaderTrgger alloc] initWithFrame:rect];
+	self.trigger = [[[HeaderTrgger alloc] initWithFrame:rect] autorelease];
 	[self.tableView addSubview:self.trigger];
 }
 
+#define HEADER_HEIGHT 80 
+
 - (void)createTableHeader {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-	CGRect rect = self.tableView.bounds;
-	rect.origin.y -= 80;
-	rect.size.height = 80;
-	HeaderTrgger* tableHeader = [[HeaderTrgger alloc] initWithFrame:rect];
-	[tableHeader labelText:NSLocalizedString(@"loading", @"")];
-	self.tableView.tableHeaderView = tableHeader;
-	[self.trigger visible:NO];
+	if (!self.tableView.tableHeaderView) {
+		CGRect rect = self.tableView.bounds;
+		rect.origin.y -= HEADER_HEIGHT;
+		rect.size.height = HEADER_HEIGHT;
+		HeaderTrgger* tableHeader = [[[HeaderTrgger alloc] initWithFrame:rect text:NSLocalizedString(@"loading", @"")] autorelease];
+		self.tableView.tableHeaderView = tableHeader;
+	}
 	[pool release];
 }
 
@@ -56,9 +61,9 @@
 	return [image shrinkImage:CGRectMake(0, 0, ADJUST_SIZE, ADJUST_SIZE)];
 }
 
-- (void)createUserImage {
+- (void)createUserImage:(NSArray*)tweets {
 	[self.images removeAllObjects];
-	for (NSMutableDictionary* tweet in self.tweets) {
+	for (NSMutableDictionary* tweet in tweets) {
 		NSMutableDictionary* user = [tweet objectForKey:@"user"];
 		UIImage* image = [self createImage:(NSString*)[user objectForKey:@"profile_image_url"]];
 		[self.images addObject:image];
@@ -67,15 +72,15 @@
 
 - (void)refreshTable {
 	[tweetBuff addObjectsFromArray:self.tweets];
-	self.tweets = tweetBuff;
-	[self createUserImage];
-	[self.tableView reloadData];
+	[self createUserImage:tweetBuff];
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	tweetBuff = nil;
 	self.tableView.tableHeaderView = nil;
 	[self.trigger restoreText];
 	[self.trigger visible:YES];
+	self.tweets = tweetBuff, tweetBuff = nil;
 	self.loaded = YES;
+	self.triggered = NO;
+	[self.tableView reloadData];
 }
 
 - (void)requestTimeLine {
@@ -91,8 +96,19 @@
 	[self performSelectorOnMainThread:@selector(refreshTable) withObject:nil waitUntilDone:YES];
 }
 
-- (void)showTweetView {
-	NSLog(@"%@: Tweet Now!", [NSDate date]);
+#define POPOVER_SIZE CGSizeMake(640u, 480u)
+
+- (void)showTweetView:(id)sender {
+	if (self.popOverController.popoverVisible) {
+		[self.popOverController dismissPopoverAnimated:YES];
+		return;
+	}
+	TweetViewController* viewController = [[[TweetViewController alloc] init] autorelease];
+	UINavigationController* navigationController = [[[UINavigationController alloc] initWithRootViewController:viewController] autorelease];
+	self.popOverController = [[[UIPopoverController alloc] initWithContentViewController:navigationController] autorelease];
+	self.popOverController.delegate = self;
+	self.popOverController.popoverContentSize = POPOVER_SIZE;
+	[self.popOverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 
@@ -113,13 +129,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTweetView)];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTweetView:)];
 
 	self.tweets = [NSMutableArray array];
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
-	triggered = NO;
+	self.triggered = NO;
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:nil];
 }
@@ -133,8 +149,6 @@
     [super viewDidAppear:animated];
 	if (!self.loaded)
 		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
-	else if (!triggered)
-		[self refreshTable];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -152,11 +166,13 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	[self.trigger removeFromSuperview];
+	self.tableView.tableFooterView = nil;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[self createTrigerHeader];
-	if (self.loaded) [self.tableView reloadData];
+	[self createTableHeader];
+	[self.tableView reloadData];
 }
 
 #pragma mark -
@@ -179,7 +195,8 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
     }
-	if (![NSArray isEmpty:self.tweets] && self.tweets.count > indexPath.row) {
+	cell.backgroundColor = [UIColor whiteColor];
+	if (![NSArray isEmpty:self.tweets] && self.tweets.count > indexPath.row && self.loaded) {
 		NSDictionary* tweet = [self.tweets objectAtIndex:indexPath.row];
 		cell.detailTextLabel.text = (NSString*)[tweet objectForKey:@"text"];
 		cell.detailTextLabel.numberOfLines = 0;
@@ -230,28 +247,36 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#define ZERO_POINT 0
 #define TRIGGER_TOGGLE -(self.tableView.frame.size.height / 6)
 
 - (void)scrollViewDidScroll:(UIScrollView*)scrollView {
-	CGRect rect = self.tableView.bounds;
-	if (rect.origin.y < TRIGGER_TOGGLE && self.loaded) {
-		triggered = YES;
+	CGRect rect = scrollView.bounds;
+	if (self.triggered) {
+		[self.trigger visible:NO];
+		return;
+	}
+	
+	if (rect.origin.y < TRIGGER_TOGGLE) {
 		[self.trigger labelText:NSLocalizedString(@"loading", @"")];
-	} else if (self.loaded && triggered) {
-		triggered = NO;
+	} else if (rect.origin.y >= TRIGGER_TOGGLE && rect.origin.y < ZERO_POINT && !self.triggered) {
 		[self.trigger restoreText];
 	}
-
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView*)scrollView willDecelerate:(BOOL)decelerate {
-	if (triggered) {
-		triggered = NO;
-		self.loaded = NO;
-		[scrollView scrollsToTop];
+	if (self.triggered) return;
+	CGRect rect = scrollView.bounds;
+	if (rect.origin.y < TRIGGER_TOGGLE) {
+		self.triggered = YES;
+		[self createTableHeader];		
 		[self performSelectorInBackground:@selector(requestTimeLine) withObject:nil];
-		[self performSelectorInBackground:@selector(createTableHeader) withObject:nil];
+	} else {
+		self.triggered = NO;
+		self.tableView.tableHeaderView = nil;
+		[self.trigger visible:YES];
 	}
+
 }
 
 #pragma mark -
@@ -268,10 +293,23 @@
 
 - (void)dealloc {
 	self.timeLine = nil;
+	self.url = nil;
+	self.userId = nil;
+	self.password = nil;
 	self.tweets = nil;
 	self.trigger = nil;
 	self.images = nil;
+	self.popOverController = nil;
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark PopoverController delegate
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+	return YES;
+}
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
 }
 
 

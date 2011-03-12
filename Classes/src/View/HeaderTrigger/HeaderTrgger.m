@@ -41,8 +41,7 @@
 #define LABEL_Y_CENTER (self.frame.size.height - (80 / 2))
 
 - (id)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
 		[self createLabel];
 		[self createIndicator];
 		self.label.center = CGPointMake(HALF_WIDTH, LABEL_Y_CENTER);
@@ -50,6 +49,13 @@
 		[self addSubview:self.label];
 		[self addSubview:self.indicator];
 		self.backgroundColor = [UIColor blackColor];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame text:(NSString*)text {
+    if (self = [self initWithFrame:frame]) {
+		self.label.text = text;
     }
     return self;
 }

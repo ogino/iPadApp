@@ -13,9 +13,10 @@
 #import "HeaderTrgger.h"
 
 
-@interface TimeLineViewController : UITableViewController {
+@interface TimeLineViewController : UITableViewController<UIPopoverControllerDelegate> {
 @private
 	BOOL loaded_;
+	BOOL triggered_;
 	TimeLine* timeLine_;
 	NSString* url_;
 	NSString* userId_;
@@ -23,12 +24,14 @@
 	NSArray* tweets_;
 	HeaderTrgger* trigger_;
 	NSMutableArray* images_;
+	UIPopoverController* popOverController_;
 // Field Only
-	BOOL triggered;
+	
 	NSMutableArray* tweetBuff;
 }
 
 @property (nonatomic, assign) BOOL loaded;
+@property (nonatomic, assign) BOOL triggered;
 @property (nonatomic, retain) TimeLine* timeLine;
 @property (nonatomic, copy) NSString* url;
 @property (nonatomic, copy) NSString* userId;
@@ -36,5 +39,6 @@
 @property (nonatomic, retain) NSArray* tweets;
 @property (nonatomic, retain) HeaderTrgger* trigger;
 @property (nonatomic, retain) NSMutableArray* images;
+@property (nonatomic, retain) UIPopoverController* popOverController;
 
 @end
