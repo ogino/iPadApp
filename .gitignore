@@ -5,6 +5,8 @@
 cat <<EOF > .gitignore
 # xcode noise
 build/*
+*/project.xcworkspace/*
+*/xcuserdata/*
 *.pbxuser
 *.perspective
 *.perspectivev3
