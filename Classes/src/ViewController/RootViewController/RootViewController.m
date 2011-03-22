@@ -22,9 +22,9 @@
 #pragma mark Privated Methods
 
 - (void)proceedMainView {
-	[self.view removeFromSuperview];
 	UIWindow* window = [[UIApplication sharedApplication] keyWindow];
 	[window addSubview:self.tabBarController.view];
+	[self.view removeFromSuperview];
 }
 
 - (void)prepared:(NSNotification*)notifination {

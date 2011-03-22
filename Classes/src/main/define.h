@@ -14,4 +14,8 @@ static NSString* const PUBLIC_TIMELINE_TITLE = @"Public time line";
 static NSString* const PUBLIC_TIMELINE_URL = @"http://api.twitter.com/1/statuses/public_timeline.json";
 static NSString* const PUBLIC_TIMELINE_ICON = @"public.png";
 
+static NSString* const HOME_TIMELINE_TITLE = @"Your time line";
+static NSString* const HOME_TIMELINE_URL = @"http://api.twitter.com/1/statuses/home_timeline.json";
+static NSString* const HOME_TIMELINE_ICON = @"home.png";
+
 static NSString* const TIMELINE_NOFIFY = @"TIMELINE NOTIFICATION";

@@ -14,7 +14,7 @@
 @synthesize label = label_;
 @synthesize indicator = indicator_;
 
-#define LABEL_WIDTH 500
+#define LABEL_WIDTH 300
 #define LABEL_HEIGHT 80
 #define BEFORE_LOAD NSLocalizedString(@"refresh", @"")
 
@@ -28,7 +28,7 @@
 	self.label.textAlignment = UITextAlignmentCenter;
 }
 
-- (void) createIndicator {
+- (void)createIndicator {
 	self.indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
 	[self.indicator startAnimating];
 }
@@ -41,7 +41,7 @@
 #define LABEL_Y_CENTER (self.frame.size.height - (80 / 2))
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
 		[self createLabel];
 		[self createIndicator];
 		self.label.center = CGPointMake(HALF_WIDTH, LABEL_Y_CENTER);
@@ -54,7 +54,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame text:(NSString*)text {
-    if (self = [self initWithFrame:frame]) {
+    if ((self = [self initWithFrame:frame])) {
 		self.label.text = text;
     }
     return self;

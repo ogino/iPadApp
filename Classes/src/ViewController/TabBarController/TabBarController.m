@@ -38,17 +38,20 @@ static NSArray* icons;
 	return viewControllers;
 }
 
+
 #pragma mark -
 #pragma mark Inherit Methods
 
+#define INIT_NAVIGATION 0
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.delegate = self;
-		titles = [NSArray arrayWithObjects:PUBLIC_TIMELINE_TITLE, nil];
-		urls = [NSArray arrayWithObjects:PUBLIC_TIMELINE_URL, nil];
-		icons = [NSArray arrayWithObjects:PUBLIC_TIMELINE_ICON, nil];
+		titles = [NSArray arrayWithObjects:HOME_TIMELINE_TITLE, PUBLIC_TIMELINE_TITLE, nil];
+		urls = [NSArray arrayWithObjects:HOME_TIMELINE_URL, PUBLIC_TIMELINE_URL, nil];
+		icons = [NSArray arrayWithObjects:HOME_TIMELINE_ICON,PUBLIC_TIMELINE_ICON, nil];
 		self.viewControllers = [self createViewControllers];
+		self.selectedIndex = INIT_NAVIGATION;
 		self.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
 	}
 	return self;

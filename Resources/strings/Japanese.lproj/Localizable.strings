@@ -5,6 +5,6 @@
    Created by 荻野 雅 on 11/02/02.
    Copyright 2011 __MyCompanyName__. All rights reserved.
  */
-refresh = "テーブルビューを下げて更新します！ さあどうぞ！";
+refresh = "テーブルビューを下げて更新します！\nさあどうぞ！";
 loading = "更新してます。しばらくお待ち下さい";
 send = "送信";

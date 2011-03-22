@@ -81,7 +81,7 @@
 #pragma mark Public_Methods
 
 - (id)initWithUserInfo:(NSString*)userId password:(NSString*)password {
-	if (self = [self init]) {
+	if ((self = [self init])) {
 		self.userId = userId;
 		self.password = password;
 	}
@@ -110,7 +110,7 @@
 #pragma mark Inherit Methods
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.consumerKey = CONSUMER_KEY;
 		self.consumerSecret = CONSUMER_SECRET;
 		self.requestKey = nil;

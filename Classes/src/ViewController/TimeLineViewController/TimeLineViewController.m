@@ -128,15 +128,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTweetView:)];
-
+	
 	self.tweets = [NSMutableArray array];
 	self.images = [NSMutableArray array];
 	self.loaded = NO;
 	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
 	self.triggered = NO;
-
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:nil];
 }
 
@@ -166,12 +166,12 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 	[self.trigger removeFromSuperview];
-	self.tableView.tableFooterView = nil;
+	self.tableView.tableHeaderView = nil;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
 	[self createTrigerHeader];
-	[self createTableHeader];
+	if (self.triggered) [self createTableHeader];
 	[self.tableView reloadData];
 }
 
@@ -188,9 +188,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+	
     static NSString *identifier = @"Cell";
-
+	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
@@ -276,7 +276,7 @@
 		self.tableView.tableHeaderView = nil;
 		[self.trigger visible:YES];
 	}
-
+	
 }
 
 #pragma mark -

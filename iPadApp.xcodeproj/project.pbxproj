@@ -46,6 +46,8 @@
 		8816119F1302BB8F00A6EAB3 /* OAuthCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 881611991302BB8F00A6EAB3 /* OAuthCore.m */; };
 		88227D631302AEC4006C0817 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88227D621302AEC4006C0817 /* Security.framework */; };
 		8847DA2512AE1D37003F30EF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8847DA2412AE1D37003F30EF /* RootViewController.m */; };
+		884C8D1D133890D800020581 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 884C8D1C133890D800020581 /* home.png */; };
+		884C8D1F133890DF00020581 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 884C8D1E133890DF00020581 /* home@2x.png */; };
 		88535B631276820700B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
 		88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BD81276A8D300B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
@@ -155,6 +157,8 @@
 		88227D621302AEC4006C0817 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8847DA2312AE1D37003F30EF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		8847DA2412AE1D37003F30EF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		884C8D1C133890D800020581 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		884C8D1E133890DF00020581 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		88535B611276820700B35A78 /* URLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnection.h; sourceTree = "<group>"; };
 		88535B621276820700B35A78 /* URLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnection.m; sourceTree = "<group>"; };
 		88535B7D12769E1F00B35A78 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
@@ -600,6 +604,7 @@
 		88CD65F112F960D200153F11 /* tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				884C8D1C133890D800020581 /* home.png */,
 				88CD65F612F9610000153F11 /* public.png */,
 			);
 			path = tabbar;
@@ -608,6 +613,7 @@
 		88CD65F212F960E500153F11 /* tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				884C8D1E133890DF00020581 /* home@2x.png */,
 				88CD65F812F9610500153F11 /* public@2x.png */,
 			);
 			path = tabbar;
@@ -766,6 +772,8 @@
 				888D6C131329D3C3008D50F0 /* noimage.png in Resources */,
 				888D6C151329D3CD008D50F0 /* noimage@2x.png in Resources */,
 				8865C097132A548200492799 /* TweetViewController.xib in Resources */,
+				884C8D1D133890D800020581 /* home.png in Resources */,
+				884C8D1F133890DF00020581 /* home@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1324,6 +1332,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1338,6 +1347,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos;
