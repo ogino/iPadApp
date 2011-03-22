@@ -43,14 +43,14 @@
 #pragma mark Public Methods
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.connection = [[[URLConnection alloc] init] autorelease];
 	}
 	return self;
 }
 
 - (id)initWithTimeoutInterval:(NSTimeInterval)timeoutInterval {
-	if (self = [self init]) {
+	if ((self = [self init])) {
 		self.connection.timeoutInterval = timeoutInterval;
 	}
 	return self;

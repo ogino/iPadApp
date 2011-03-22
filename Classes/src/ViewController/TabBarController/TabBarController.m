@@ -42,8 +42,6 @@ static NSArray* icons;
 #pragma mark -
 #pragma mark Inherit Methods
 
-#define INIT_NAVIGATION 0
-
 - (id)init {
 	if ((self = [super init])) {
 		self.delegate = self;
@@ -51,7 +49,6 @@ static NSArray* icons;
 		urls = [NSArray arrayWithObjects:HOME_TIMELINE_URL, PUBLIC_TIMELINE_URL, nil];
 		icons = [NSArray arrayWithObjects:HOME_TIMELINE_ICON,PUBLIC_TIMELINE_ICON, nil];
 		self.viewControllers = [self createViewControllers];
-		self.selectedIndex = INIT_NAVIGATION;
 		self.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
 	}
 	return self;

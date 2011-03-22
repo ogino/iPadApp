@@ -43,7 +43,15 @@
 - (id)createData {
 	assert(self.url != nil);
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
-	NSData* data = [urlLoader request:[NSURL URLWithString:self.url] timeoutInterval:60];
+	NSData* data = nil;
+	if (self.authorize.accessKey) {
+		NSData* body = [[NSString stringWithString:@""] dataUsingEncoding:NSUTF8StringEncoding];
+		NSString* header = [self.authorize createAuthorizeHeader:[NSURL URLWithString:self.url] method:@"GET" body:body];
+		data = [urlLoader request:[NSURL URLWithString:self.url]
+						   header:header headerField:@"Authorization" get:@""];
+	} else {
+		data = [urlLoader request:[NSURL URLWithString:self.url] timeoutInterval:60];
+	}
 	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 	return ([NSString isEmpty:json]) ? nil : [json JSONValue];
 }

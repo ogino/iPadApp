@@ -38,5 +38,6 @@
 - (id)initWithUserInfo:(NSString*)userId password:(NSString*)password;
 - (void)createOAuthRequestKeys;
 - (void)createOAuthAccessKeys;
+- (NSString*)createAuthorizeHeader:(NSURL*)url method:(NSString*)method body:(NSData*)body;
 
 @end

@@ -105,9 +105,16 @@
 	[self createAccessKeys:[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]];
 }
 
+- (NSString*)createAuthorizeHeader:(NSURL*)url method:(NSString*)method body:(NSData*)body {
+	return OAuthorizationHeader(url, method, body, self.consumerKey, self.consumerSecret, self.accessKey, self.accessSecret);
+}
+
 
 #pragma mark -
 #pragma mark Inherit Methods
+
+#define OAUTH_KEY @""
+#define OAUTH_SECRET @""
 
 - (id)init {
 	if ((self = [super init])) {
@@ -115,6 +122,8 @@
 		self.consumerSecret = CONSUMER_SECRET;
 		self.requestKey = nil;
 		self.requestSecret = nil;
+		self.accessKey = OAUTH_KEY;
+		self.accessSecret = OAUTH_SECRET;
 		self.urlLoader = [[[URLLoader alloc] init] autorelease];
 	}
 	return self;

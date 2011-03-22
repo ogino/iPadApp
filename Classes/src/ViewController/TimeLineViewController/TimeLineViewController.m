@@ -88,7 +88,7 @@
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	tweetBuff = (NSMutableArray*)[self.timeLine createData];
 	[tweetBuff retain];
-	[[NSNotificationCenter defaultCenter] postNotificationName:TIMELINE_NOFIFY object:nil];
+	[[NSNotificationCenter defaultCenter] postNotificationName:TIMELINE_NOFIFY object:self];
 	[pool release];
 }
 
@@ -137,7 +137,7 @@
 	self.timeLine = [[[TimeLine alloc] init:self.url userId:self.userId password:self.password] autorelease];
 	self.triggered = NO;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchedTimeLine:) name:TIMELINE_NOFIFY object:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -292,6 +292,7 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:TIMELINE_NOFIFY object:self];
 	self.timeLine = nil;
 	self.url = nil;
 	self.userId = nil;
