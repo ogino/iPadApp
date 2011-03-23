@@ -55,8 +55,11 @@
 - (UIImage*)createImage:(NSString*)urlStr {
 	NSURL* url = [NSURL URLWithString:urlStr];
 	URLLoader* urlLoader = [[[URLLoader alloc] init] autorelease];
-	NSData* data = [urlLoader request:url];
-	UIImage* image = [UIImage imageWithData:data];
+	UIImage* image = nil;
+	if (url) {
+		NSData* data = [urlLoader request:url];
+		image = [UIImage imageWithData:data];	
+	}
 	if (!image) image = [UIImage imageNamed:@"noimage"];
 	return [image shrinkImage:CGRectMake(0, 0, ADJUST_SIZE, ADJUST_SIZE)];
 }
@@ -96,7 +99,7 @@
 	[self performSelectorOnMainThread:@selector(refreshTable) withObject:nil waitUntilDone:YES];
 }
 
-#define POPOVER_SIZE CGSizeMake(640u, 480u)
+#define POPOVER_SIZE CGSizeMake(640u, 250u)
 
 - (void)showTweetView:(id)sender {
 	if (self.popOverController.popoverVisible) {

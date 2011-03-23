@@ -52,6 +52,10 @@
 		88535B9D1276A40F00B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BD81276A8D300B35A78 /* AlertUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B9C1276A40F00B35A78 /* AlertUtil.m */; };
 		88535BE21276A90F00B35A78 /* URLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 88535B621276820700B35A78 /* URLConnection.m */; };
+		8857D2391339A131002F16EA /* mention.png in Resources */ = {isa = PBXBuildFile; fileRef = 8857D2381339A131002F16EA /* mention.png */; };
+		8857D23B1339A136002F16EA /* mention@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8857D23A1339A136002F16EA /* mention@2x.png */; };
+		8857D23D1339B0A7002F16EA /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 8857D23C1339B0A7002F16EA /* message.png */; };
+		8857D23F1339B0AC002F16EA /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8857D23E1339B0AC002F16EA /* message@2x.png */; };
 		8865C097132A548200492799 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8865C096132A548200492799 /* TweetViewController.xib */; };
 		8865C09C132A559B00492799 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8865C09B132A559B00492799 /* TweetViewController.m */; };
 		8866916D12ED442500CD3D2F /* HeaderTrgger.m in Sources */ = {isa = PBXBuildFile; fileRef = 8866916C12ED442500CD3D2F /* HeaderTrgger.m */; };
@@ -164,6 +168,10 @@
 		88535B7D12769E1F00B35A78 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
 		88535B9B1276A40F00B35A78 /* AlertUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertUtil.h; sourceTree = "<group>"; };
 		88535B9C1276A40F00B35A78 /* AlertUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertUtil.m; sourceTree = "<group>"; };
+		8857D2381339A131002F16EA /* mention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mention.png; sourceTree = "<group>"; };
+		8857D23A1339A136002F16EA /* mention@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mention@2x.png"; sourceTree = "<group>"; };
+		8857D23C1339B0A7002F16EA /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
+		8857D23E1339B0AC002F16EA /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
 		8865C096132A548200492799 /* TweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
 		8865C09A132A559B00492799 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
 		8865C09B132A559B00492799 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
@@ -605,6 +613,8 @@
 			isa = PBXGroup;
 			children = (
 				884C8D1C133890D800020581 /* home.png */,
+				8857D2381339A131002F16EA /* mention.png */,
+				8857D23C1339B0A7002F16EA /* message.png */,
 				88CD65F612F9610000153F11 /* public.png */,
 			);
 			path = tabbar;
@@ -614,6 +624,8 @@
 			isa = PBXGroup;
 			children = (
 				884C8D1E133890DF00020581 /* home@2x.png */,
+				8857D23A1339A136002F16EA /* mention@2x.png */,
+				8857D23E1339B0AC002F16EA /* message@2x.png */,
 				88CD65F812F9610500153F11 /* public@2x.png */,
 			);
 			path = tabbar;
@@ -774,6 +786,10 @@
 				8865C097132A548200492799 /* TweetViewController.xib in Resources */,
 				884C8D1D133890D800020581 /* home.png in Resources */,
 				884C8D1F133890DF00020581 /* home@2x.png in Resources */,
+				8857D2391339A131002F16EA /* mention.png in Resources */,
+				8857D23B1339A136002F16EA /* mention@2x.png in Resources */,
+				8857D23D1339B0A7002F16EA /* message.png in Resources */,
+				8857D23F1339B0AC002F16EA /* message@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

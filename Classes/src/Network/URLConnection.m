@@ -27,7 +27,7 @@
 }
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(completeRequest:) name:CON_SUCCESS object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(abortRequest:) name:CON_FAIL object:nil];
 		self.timeoutInterval = 60;
@@ -36,7 +36,7 @@
 }
 
 - (id)initWithTimeoutInterval:(NSTimeInterval)timeoutInterval {
-	if (self = [self init]) {
+	if ((self = [self init])) {
 		self.timeoutInterval = timeoutInterval;
 	}
 	return self;

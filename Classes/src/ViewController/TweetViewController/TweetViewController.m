@@ -20,6 +20,12 @@
 	NSLog(@"%@: Tweet Now!", [NSDate date]);
 }
 
+- (void)createNavigationBar {
+	self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+	self.navigationItem.rightBarButtonItem =
+	[[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"send", @"") style:UIBarButtonItemStylePlain target:self action:@selector(sendTweet)] autorelease];
+}
+
 
 #pragma mark -
 #pragma mark Inherit Methods
@@ -31,16 +37,18 @@
     return self;
 }
 
-
 - (void)loadView {
 	[super loadView];
-	self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-	self.navigationItem.rightBarButtonItem =
-	[[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"send", @"") style:UIBarButtonItemStylePlain target:self action:@selector(sendTweet)] autorelease];
+	UIWindow* window = [[UIApplication sharedApplication] keyWindow];
+	self.view = [[[UIView alloc] initWithFrame:window.bounds] autorelease];
+	[self createNavigationBar];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.textView = [[[UITextView alloc] initWithFrame:self.view.frame] autorelease];
+	self.textView.font = [UIFont fontWithName:@"Helvetica" size:20.0f];
+	[self.view addSubview:self.textView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,6 +57,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	[self.textView becomeFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -81,5 +90,32 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark UITextView Delegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+	return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+	return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+	return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+}
+
+- (void)textViewDidChangeSelection:(UITextView *)textView {
+}
 
 @end

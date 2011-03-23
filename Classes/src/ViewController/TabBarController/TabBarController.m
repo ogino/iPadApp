@@ -45,9 +45,9 @@ static NSArray* icons;
 - (id)init {
 	if ((self = [super init])) {
 		self.delegate = self;
-		titles = [NSArray arrayWithObjects:HOME_TIMELINE_TITLE, PUBLIC_TIMELINE_TITLE, nil];
-		urls = [NSArray arrayWithObjects:HOME_TIMELINE_URL, PUBLIC_TIMELINE_URL, nil];
-		icons = [NSArray arrayWithObjects:HOME_TIMELINE_ICON,PUBLIC_TIMELINE_ICON, nil];
+		titles = [NSArray arrayWithObjects:HOME_TITLE, MENTION_TITLE, MESSAGE_TITLE, PUBLIC_TITLE, nil];
+		urls = [NSArray arrayWithObjects:HOME_URL, MENTION_URL, MESSAGE_URL, PUBLIC_URL, nil];
+		icons = [NSArray arrayWithObjects:HOME_ICON, MENTION_ICON, MESSAGE_ICON, PUBLIC_ICON, nil];
 		self.viewControllers = [self createViewControllers];
 		self.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
 	}

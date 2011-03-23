@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface TweetViewController : UIViewController {
+@interface TweetViewController : UIViewController<UITextViewDelegate> {
 @private
 	UITextView* textView_;
 }
