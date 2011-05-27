@@ -13,6 +13,10 @@
 
 + (BOOL)isEmpty:(NSString*)string;
 
-+ (NSString*)encodeUTF8:(NSString*)source;
++ (NSString*)urlEncode:(NSString*)source;
+
++ (NSString*)urlDecode:(NSString*)source;
+
++ (unsigned int)convertHexString:(NSString*)hex;
 
 @end
