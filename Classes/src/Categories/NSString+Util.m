@@ -16,8 +16,19 @@
 	return (BOOL)(string.length == 0);
 }
 
-+ (NSString*)encodeUTF8:(NSString*)source {
++ (NSString*)urlEncode:(NSString*)source {
 	return (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)source, NULL, CFSTR(";,/?:@&=+$#"), kCFStringEncodingUTF8);
+}
+
++ (NSString*)urlDecode:(NSString*)source {
+	return (NSString*)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL, (CFStringRef)source, CFSTR(""), kCFStringEncodingUTF8);
+}
+
++ (unsigned int)convertHexString:(NSString*)hex {
+	NSScanner* scanner = [NSScanner scannerWithString:hex];
+	unsigned int value;
+	[scanner scanHexInt:&value];
+	return value;
 }
 
 @end
