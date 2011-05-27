@@ -29,7 +29,7 @@
 - (void)testRequestWithGET {
 	NSURL* url = [NSURL URLWithString:@"http://www.pwv.co.jp/~take/TakeWiki/index.php"];
 	NSString* jpGET = @"iPhone/テスト駆動型開発の準備";
-	NSString* get = [NSString encodeUTF8:jpGET];
+	NSString* get = [NSString urlEncode:jpGET];
 	NSData* data = [urlLoader request:url get:get];
 	assertThat(data, notNilValue());
 	assertThat([NSNumber numberWithInt:[data length]], greaterThan([NSNumber numberWithInt:0u]));
@@ -52,7 +52,7 @@
 - (void)testRequestWithBodyGET {
 	NSURL* url = [NSURL URLWithString:@"http://www.google.co.jp/search"];
 	NSString* jpGET = @"hl=ja&client=firefox-a&hs=cH8&rls=org.mozilla%3Aja-JP-mac%3Aunofficial&q=http+httpbody+setHTTPMethod+\"GET\"&aq=f&aqi=&aql=&oq=";
-	NSString* get = [NSString encodeUTF8:jpGET];
+	NSString* get = [NSString urlEncode:jpGET];
 	NSData* data = [urlLoader request:url header:nil headerField:nil get:get];
 	assertThat(data, notNilValue());
 	assertThat([NSNumber numberWithInt:[data length]], greaterThan([NSNumber numberWithInt:0u]));
